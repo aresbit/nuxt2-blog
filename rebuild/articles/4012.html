@@ -1,0 +1,102 @@
+<h1><sup class="fake-head" id="id-Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"></sup><a class="header-link" href="#id-Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><p>Web 前端开发概念模型</p></a></h1>
+<p>目标：</p>
+<p>使用 Next.js，熟悉 JavaScript、 React 和相关的 web 开发概念</p>
+<h3><sup class="fake-head" id="id-nextjs%E4%B8%8BWeb%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A6%82%E5%BF%B5"></sup><a class="header-link" href="#id-nextjs%E4%B8%8BWeb%20%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%A6%82%E5%BF%B5"><p>nextjs 下 Web 应用程序概念</p></a></h3>
+<p>三个基本的 React 概念：组件、属性和状态。</p>
+<ul>
+<li><strong>User Interface</strong> - how users will consume and interact with your application.</li>
+<li>用户界面 —— 用户将如何使用您的应用程序并与之交互。</li>
+<li><strong>Routing</strong> - how users navigate between different parts of your application.</li>
+<li>路由 —— 用户如何在应用程序的不同部分之间导航。</li>
+<li><strong>Data Fetching</strong> - where your data lives and how to get it.</li>
+<li>数据获取 —— 您的数据位于何处以及如何获取数据。</li>
+<li><strong>Rendering</strong> - when and where you render static or dynamic content.</li>
+<li>渲染 —— 何时何地渲染静态或动态内容。</li>
+<li><strong>Integrations</strong> - what third-party services you use (CMS, auth, payments, etc) and how you connect to them.</li>
+<li>集成 —— 您使用的第三方服务 (CMS、验证、支付等) 以及您如何连接到它们。</li>
+<li><strong>Infrastructure</strong> - where you deploy, store, and run your application code (Serverless, CDN, Edge, etc).</li>
+<li>基础设施 —— 部署、存储和运行应用程序代码 (Serverless、 CDN、 Edge 等) 的地方。</li>
+<li><strong>Performance</strong> - how to optimize your application for end-users.</li>
+<li>性能 —— 如何为最终用户优化应用程序。</li>
+<li><strong>Scalability</strong> - how your application adapts as your team, data, and traffic grow.</li>
+<li>可伸缩性 —— 应用程序如何随着团队、数据和流量的增长而适应。</li>
+<li><strong>Developer Experience</strong> - your team’s experience building and maintaining your application.</li>
+<li>开发人员经验 - 您的团队的经验构建和维护您的应用程序。</li>
+</ul>
+<p><span class="image-container"><img data-viewer="" alt="Next.js App Architecture" title="Next.js App Architecture" src="https://nextjs.org/static/images/learn/foundations/next-app.png"><small class="desc">Next.js App Architecture</small></span></p>
+<h2><sup class="fake-head" id="id-React%2018"></sup><a class="header-link" href="#id-React%2018"><p>React 18</p></a></h2>
+<p>react 是一个用于构建交互式用户界面的 JavaScript 库。</p>
+<p>所谓用户界面，我们指的是用户在屏幕上看到并与之交互的元素。</p>
+<p>库的意思是 React 提供了有用的函数来构建 UI，但是让开发人员自己决定在应用程序中的哪些地方使用这些函数。</p>
+<p>Nextjs 是一个 React 框架，它为你创建 web 应用提供了构建模块。并处理 React 所需的工具和配置，比如使用 React 来构建 UI，然后渐进地采用 Next.js 特性来解决常见的应用程序需求，如路由、数据获取、集成等</p>
+<ul>
+<li>函数式组件</li>
+</ul>
+<pre><small>react</small><div></div><code class="react language-react">function Counter() {
+  const [counter, setCounter] = useState(0)
+
+  handleClick = () =&gt; setCounter(counter + 1)
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;counter: {counter}&lt;/p&gt;
+      &lt;button onClick={handleClick}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<p>函数组合，传值</p>
+<ol>
+<li>浏览器如何解释代码以创建交互式用户界面 (UI)？</li>
+</ol>
+<p>当用户访问一个网页时，服务器会向浏览器返回一个 HTML 文件，然后浏览器读取 HTML 并构造文档对象模型 (DOM)。</p>
+<p>DOM 是 HTML 元素的对象表示形式。它充当代码和用户界面之间的桥梁，并具有具有父关系和子关系的树状结构。</p>
+<p><span class="image-container"><img data-viewer="" alt="DOM and UI" title="DOM and UI" src="https://nextjs.org/static/images/learn/foundations/dom-to-ui.png"><small class="desc">DOM and UI</small></span></p>
+<p>可以使用 DOM 方法和编程语言 (如 JavaScript) 来监听用户事件，并通过选择、添加、更新和删除用户界面中的特定元素来操作 DOM。</p>
+<p>DOM 操作使您不仅可以针对特定的元素，还可以更改它们的样式和内容。</p>
+<p>但是，描述一下你想要展示的内容，计算机自己找出如何更新 DOM，这样不是很好吗？</p>
+<p>一个帮助开发人员构建用户界面的流行的声明性库是 React。</p>
+<p>JSX 是 JavaScript 的语法扩展，遵循返回一个根元素，标签闭合，camelCase。</p>
+<p>Babel 转译，以兼容旧网页。</p>
+<p>入门时，根据黑盒抽象原则，你甚至不需要知道 React 是如何更新用户界面，</p>
+<p>够用的 js</p>
+<ul>
+<li>函数式</li>
+<li>对象</li>
+<li>数组</li>
+<li>析构</li>
+<li>用组件构建用户界面</li>
+<li>模板</li>
+<li>？：  ==     if then  else</li>
+<li>模块化</li>
+</ul>
+<p>react 核心概念：</p>
+<ul>
+<li>Components 组件 （函数）：用组件构建用户界面，在 React 中，组件就是一个返回 UI 元素的函数，在函数的返回语句中，你可以编写 JSX。要将这个组件呈现给 DOM，可以将它作 ReactDOM.render () 方法中的第一个参数传递，React 组件应该大写，以区别于普通 HTML 和 JavaScript。 组件树  -&gt;dom -&gt;  ui tree</li>
+<li>Props 属性 （参数）, 使用它们在组件之间传递数据，将信息片段作为属性传递给 React 组件。这些参数可以改变组件的行为，或者在显示到屏幕上时显示的内容。然后，您可以将这些道具从父组件传递给子组件。</li>
+<li>State 状态 （副作用）, 在 React 中，数据沿着组件树流动。这被称为单向数据流。可以作为参数从父组件传递给子组件。</li>
+<li>hooks: 允许您向组件添加额外的逻辑，例如状态。您可以将状态看作 UI 中随时间变化的任何信息，通常由用户交互触发。(IO monaid?, 参数传递副作用)，</li>
+<li>用于管理状态的 React hook 所称的: useState ()，并可以将状态信息作为属性传递给子组件。属性是传递给组件的只读信息。状态是随时间变化的信息，通常由用户交互触发。</li>
+</ul>
+<p><span class="image-container"><img data-viewer="" alt="Examples of state" title="Examples of state" src="https://nextjs.org/static/images/learn/foundations/state.png"><small class="desc">Examples of state</small></span></p>
+<h3><sup class="fake-head" id="id-%E4%BB%8E%20React%20%E5%88%B0%20Next.js"></sup><a class="header-link" href="#id-%E4%BB%8E%20React%20%E5%88%B0%20Next.js"><p>从 React 到 Next.js</p></a></h3>
+<p>React 擅长构建 UI，Next.js 提供了一个框架来构建应用程序， 可以处理大部分的设置和配置，并具有其他特性来帮助您构建 React 应用程序。</p>
+<p>Next.js 的基本工作原理</p>
+<ul>
+<li>代码运行的环境：开发 vs. 生产</li>
+<li>当你的代码运行时：构建时间 vs. 运行时间</li>
+<li>渲染发生在哪里：客户端 vs 服务器</li>
+</ul>
+<p>原理包括</p>
+<ul>
+<li>编译，</li>
+<li>打包 Bundling</li>
+</ul>
+<p>编译是将代码转换成浏览器可解析的内容。捆绑是解析应用程序依赖关系图并减少文件数量。</p>
+<p>捆绑是解决依赖关系网并将文件 (或模块) 合并 (或 “打包”) 为浏览器优化包的过程，目标是减少用户访问网页时对文件的请求数量。</p>
+<ul>
+<li>代码拆分：改进应用程序的初始负载，只加载入口点所需的代码</li>
+<li>预渲染：服务器端渲染、静态站点生成和客户端渲染 。</li>
+</ul>
+<p>应用分发：可以将网络看作是能够共享资源的链接计算机 (或服务器)。对于 Next.js 应用程序，您的应用程序代码可以分发到原始服务器、内容交付网络 (Content Delivery Networks，cdn) 和 Edge。</p>
+<p>最后， <a href="https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&amp;utm_medium=homepage-cta&amp;utm_campaign=next-website">create your first Next.js app</a> 。</p>
