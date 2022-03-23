@@ -1,5 +1,23 @@
 [
     {
+        "title": "Rust基础之变量",
+        "id": 2578,
+        "time": 1648039621291,
+        "modifyTime": 1648039621291,
+        "len": 1387,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust基础之变量",
+                "url": "#id-Rust%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust编程基础",
         "id": 6436,
         "time": 1648038968613,

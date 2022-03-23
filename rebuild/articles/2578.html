@@ -1,0 +1,85 @@
+<h1><sup class="fake-head" id="id-Rust%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F"></sup><a class="header-link" href="#id-Rust%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F"><p>Rust 基础之变量</p></a></h1>
+<p>在 Rust 中要知道的第一件事是，所有的变量在默认情况下都是常量。例子 :</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">i</span> = <span class="hljs-number">0</span>;
+
+i = <span class="hljs-number">2</span>; <span class="hljs-comment">// 错误!</span>
+<span class="hljs-comment">//要声明一个可变的变量，你必须使用mut关键字。</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0</span>;
+
+i = <span class="hljs-number">2</span>; <span class="hljs-comment">// Ok !</span>
+<span class="hljs-comment">//现在让我们来看看类型在Rust中是如何工作的。在这里，没有什么新东西，我们仍然有整数、浮点数、字符串等等。唯一的区别将来自于他们的语法。例如，要声明一个32位的整数，你可以这样做。</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">i</span>：<span class="hljs-type">i32</span> = <span class="hljs-number">0</span>;
+<span class="hljs-comment">// 或 :</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">i</span> = <span class="hljs-number">0i32</span>;
+<span class="hljs-comment">//你还应该知道，Rust编译器使用类型推理。基本上，你不需要声明变量的类型，它通常可以自己推断出来。例子 :</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">i</span> = <span class="hljs-number">0</span>; <span class="hljs-comment">// 所以它显然是一个整数。</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">max</span>=<span class="hljs-number">10i32</span>。
+
+<span class="hljs-keyword">if</span> i &lt; max { <span class="hljs-comment">// max是一个i32，所以编译器推断出i也是一个i32。</span>
+    <span class="hljs-built_in">println!</span> (<span class="hljs-string">"i is less than max!"</span>);
+}
+<span class="hljs-comment">//因此，为了总结，这里有一个可用的不同基本类型（也称为 "基元"）的小列表。</span>
+
+<span class="hljs-type">i8</span>：一个<span class="hljs-number">8</span>位有符号的整数
+
+<span class="hljs-type">i16</span>
+
+<span class="hljs-type">i32</span>
+
+<span class="hljs-type">i64</span>
+
+<span class="hljs-type">i128</span>
+
+<span class="hljs-type">u8</span>：一个<span class="hljs-number">8</span>位无符号整数
+
+<span class="hljs-type">u16</span>
+
+<span class="hljs-type">u32</span>
+
+<span class="hljs-type">u64</span>
+
+<span class="hljs-type">u128</span>
+
+<span class="hljs-type">f32</span>：一个<span class="hljs-number">32</span>位的浮点数
+
+<span class="hljs-type">f64</span>：一个<span class="hljs-number">64</span>位的浮点数
+
+&lt;h2&gt;&lt;sup class=<span class="hljs-string">"fake-head"</span> id=<span class="hljs-string">"id-%E5%AD%97%E7%AC%A6%E4%B8%B2"</span>&gt;&lt;/sup&gt;&lt;a class=<span class="hljs-string">"header-link"</span> href=<span class="hljs-string">"#id-%E5%AD%97%E7%AC%A6%E4%B8%B2"</span>&gt;&lt;p&gt;字符串&lt;/p&gt;&lt;/a&gt;&lt;/h2&gt;
+切片（我们将在本章后面再讨论这个问题）
+
+注意，<span class="hljs-type">isize</span>和<span class="hljs-type">usize</span>类型也存在，相当于C/C++中的intptr_t和uintptr_t。基本上，在<span class="hljs-number">32</span>位系统上，它们将分别为<span class="hljs-number">32</span>位，而在<span class="hljs-number">64</span>位系统上，它们将为<span class="hljs-number">64</span>位。
+
+最后要提到的一点是：在C/C++/Java/等中这种代码是很常见的。:
+
+i++;
+++i;
+这种语法在Rust中是无效的，你需要
+
+i += <span class="hljs-number">1</span>;
+另一个细节可能很重要：如果我们用<span class="hljs-string">'_'</span>作为变量名称的开头，如果不使用它，我们就不会得到编译器的警告。这在某些情况下是有用的，尽管它是相当有限的。例子 :
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">_i</span> = <span class="hljs-number">0</span>。
+是时候回到切片上了。
+简单地说，一个片断就是一个数组的一个片段。对于那些做过C/C++的人来说，它只是一个指针和一个尺寸。例子。
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">tab</span> = &amp;[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]; <span class="hljs-comment">// tab是一个包含0、1和2的片断。</span>
+
+<span class="hljs-built_in">println!</span> (<span class="hljs-string">"{:?}"</span>, tab); <span class="hljs-comment">//它将显示"[0, 1, 2]"</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = &amp;tab[<span class="hljs-number">1</span>..]; <span class="hljs-comment">// s现在是一个切片，从tab的第二个元素开始。</span>
+<span class="hljs-built_in">println!</span> (<span class="hljs-string">"{:?}"</span>, s); <span class="hljs-comment">// 它将显示"[1, 2]"</span>
+<span class="hljs-comment">//就像可以从数组中获得一个切片一样，也可以从Vecs中获得一个切片。</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">v</span>: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">u8</span>&gt; = Vec::<span class="hljs-title function_ invoke__">new</span>();
+
+v.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-number">0</span>);
+v.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-number">1</span>);
+v.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = &amp;v;
+<span class="hljs-built_in">println!</span> (<span class="hljs-string">"{:?}"</span>, s); <span class="hljs-comment">// 它将显示"[0, 1, 2]"</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = &amp;v[<span class="hljs-number">1</span>...];
+<span class="hljs-built_in">println!</span> (<span class="hljs-string">"{:?}"</span>, s); <span class="hljs-comment">// 它将显示"[1, 2]"</span>
+<span class="hljs-comment">//包含数组的类型总是有一个相关的片断。例如，String有&amp;str，OsString有OsStr，等等。</span>
+</code></pre>
