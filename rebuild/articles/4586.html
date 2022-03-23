@@ -1,0 +1,141 @@
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><p>Rust 编程基础之错误处理</p></a></h1>
+<p>这种代码在其他语言中很常见：</p>
+<pre><small>C++</small><div></div><code class="cpp language-cpp hljs">Objet *obj = <span class="hljs-built_in">creer_objet</span>();
+
+<span class="hljs-keyword">if</span> (obj == <span class="hljs-literal">NULL</span>) {
+    <span class="hljs-comment">// </span>
+}
+</code></pre>
+<p>你（通常）不会在 Rust 中看到这一点。</p>
+<h3><sup class="fake-head" id="id-Result"></sup><a class="header-link" href="#id-Result"><p>Result</p></a></h3>
+<p>例如，让我们创建一个文件：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">use</span> std::fs::File;
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>);
+</code></pre>
+<p>文档说 <a href="https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open">File::open</a> 返回一个 <a href="https://doc.rust-lang.org/stable/std/io/type.Result.html">Result</a>。因此我们不可能直接使用<strong>文件</strong>变量。这 “迫使” 我们检查 <a href="https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open">File::open</a> 的返回：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">use</span> std::fs::File;
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = <span class="hljs-keyword">match</span> File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>) {
+    <span class="hljs-title function_ invoke__">Ok</span>(f) =&gt; {
+        <span class="hljs-comment">// Okay, l'ouverture du fichier s'est bien déroulée, on renvoie l'objet</span>
+        f
+    }
+    <span class="hljs-title function_ invoke__">Err</span>(e) =&gt; {
+        <span class="hljs-comment">// Il y a eu un problème, affichons l'erreur pour voir ce qu'il se passe</span>
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, e);
+        <span class="hljs-comment">// on ne peut pas renvoyer le fichier ici, donc on quitte la fonction</span>
+        <span class="hljs-keyword">return</span>;
+    }
+};
+</code></pre>
+<p>也可以绕过此验证，<strong>但风险自负</strong>！</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">use</span> std::fs::File;
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>).<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"err"</span>);
+</code></pre>
+<p>如果在打开文件时出现错误，您的程序将崩溃，您将无法对其执行任何操作。<a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.is_ok">但是，可以通过 is<em>ok</em></a><em> 和 <a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.is_err">is</a></em><a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.is_err">err</a> 函数 “安全地” 使用此方法：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">use</span> std::fs::File;
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>);
+
+<span class="hljs-keyword">if</span> fichier.<span class="hljs-title function_ invoke__">is_ok</span>() {
+    <span class="hljs-comment">// On peut faire expect !</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Il y a eu une erreur, expect impossible !</span>
+}
+</code></pre>
+<p>然而，最好使用模式匹配。</p>
+<p>请注意，有一个与 <a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.expect"><strong>expect</strong></a> 方法等效的方法，称为 <a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html#method.unwrap"><strong>unwrap</strong></a>。它执行完全相同的操作，但不提供错误消息。简单地说：<code>expect</code> msg &gt;<code>unwrap</code>！</p>
+<h3><sup class="fake-head" id="id-Option"></sup><a class="header-link" href="#id-Option"><p>Option</p></a></h3>
+<p>您现在知道<strong>通常</strong>不可能有无效对象。例子 ：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+
+v.<span class="hljs-title function_ invoke__">pop</span>(); <span class="hljs-comment">// retourne Some(2)</span>
+v.<span class="hljs-title function_ invoke__">pop</span>(); <span class="hljs-comment">// retourne Some(1)</span>
+v.<span class="hljs-title function_ invoke__">pop</span>(); <span class="hljs-comment">// retourne None</span>
+</code></pre>
+<p>但是，您很有可能需要一个对象，该对象将在程序稍后进行初始化，或者允许您检查状态。在这种情况下该怎么办？<a href="https://doc.rust-lang.org/stable/std/option/enum.Option.html">Option</a> 就在那里！</p>
+<p>让我们想象一下，您有一艘可装饰的船，可以在其上获得奖金（例如内部休息室）。它最初不会存在，但可以稍后添加：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Vaisseau</span> {
+    <span class="hljs-comment">// pleins de trucs</span>
+    salon: <span class="hljs-type">Option</span>&lt;Salon&gt;,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Vaisseau</span> {
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>() <span class="hljs-punctuation">-&gt;</span> Vaisseau {
+        Vaisseau {
+            <span class="hljs-comment">// on initialise le reste</span>
+            salon: <span class="hljs-literal">None</span>, <span class="hljs-comment">// on n'a pas de salon</span>
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">vaisseau</span> = Vaisseau::<span class="hljs-title function_ invoke__">new</span>();
+</code></pre>
+<p>如果您想测试代码，可以将此代码用于结构 <code>Salon</code>：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"> <span class="hljs-comment">// exemple.</span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Salon</span> {}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Salon</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>() <span class="hljs-punctuation">-&gt;</span> Salon {
+        Salon {}
+    }
+}
+</code></pre>
+<p>所以目前，我们没有客厅。现在我们添加一个：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">跑步vaisseau.salon = <span class="hljs-title function_ invoke__">Some</span>(Salon::<span class="hljs-title function_ invoke__">new</span>());
+</code></pre>
+<p>我想你现在想知道如何进入大厅。就像这样：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">match</span> vaisseau.salon {
+    <span class="hljs-title function_ invoke__">Some</span>(s) =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"ce vaisseau a un salon"</span>);
+    }
+    <span class="hljs-literal">None</span> =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"ce vaisseau n'a pas de salon"</span>);
+    }
+}
+</code></pre>
+<p>起初，您可能会觉得它很烦人，但它带来的安全性是一项重要资产！但是，就像使用 <a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html"><strong>Result</strong></a> 一样，您可以使用 <a href="https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.expect"><strong>expect</strong></a> 方法。</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">跑步vaisseau.salon = <span class="hljs-title function_ invoke__">Some</span>(Salon::<span class="hljs-title function_ invoke__">new</span>());
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">salon</span> =  vaisseau.salon.<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"pas de salon"</span>); <span class="hljs-comment">// je ne le recommande pas !</span>
+</code></pre>
+<p>就像 <a href="https://doc.rust-lang.org/stable/std/result/enum.Result.html"><strong>Result 一样，使用</strong></a><pangu> </pangu><a href="https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.is_some"><strong>is<em>some</em></strong></a><em> 和 <a href="https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.is_none"><strong>is</strong></a></em><a href="https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.is_none"><strong>none</strong></a> 方法可以不使用模式匹配机制：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">跑步<span class="hljs-keyword">if</span> vaisseau.salon.<span class="hljs-title function_ invoke__">is_some</span>() {
+    <span class="hljs-comment">// on peut unwrap !</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// ce vaisseau ne contient pas de salon !</span>
+}
+</code></pre>
+<p>同样，最好使用模式匹配。</p>
+<h3><sup class="fake-head" id="id-%E6%81%90%E6%85%8C%EF%BC%81"></sup><a class="header-link" href="#id-%E6%81%90%E6%85%8C%EF%BC%81"><p>恐慌！</p></a></h3>
+<p><a href="https://doc.rust-lang.org/stable/std/macro.panic!.html"><strong>恐慌！</strong></a>是一个非常有用的宏，因为它允许您 “退出” 程序。仅当程序出现不可恢复的错误时才应调用它。这是非常容易使用：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-built_in">panic!</span>();
+<span class="hljs-built_in">panic!</span>(<span class="hljs-number">4</span>); <span class="hljs-comment">// panic avec une valeur de 4 pour la récupérer ailleurs (hors du programme par exemple)</span>
+<span class="hljs-built_in">panic!</span>(<span class="hljs-string">"Une erreur critique vient d'arriver !"</span>);
+<span class="hljs-built_in">panic!</span>(<span class="hljs-string">"Une erreur critique vient d'arriver : {}"</span>, <span class="hljs-string">"le moteur droit est mort"</span>);
+</code></pre>
+<p>就这样。</p>
+<h3><sup class="fake-head" id="id-%E9%97%AE%E9%A2%98%EF%BC%81"></sup><a class="header-link" href="#id-%E9%97%AE%E9%A2%98%EF%BC%81"><p>问题！</p></a></h3>
+<p>对于我们在上面看到的代码，目前可以用更短的方式编写它们：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">跑步<span class="hljs-keyword">use</span> std::fs::File;
+<span class="hljs-keyword">use</span> std::io;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">foo</span>() <span class="hljs-punctuation">-&gt;</span> io::<span class="hljs-type">Result</span>&lt;<span class="hljs-type">u32</span>&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>)?;
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-title function_ invoke__">Ok</span>(<span class="hljs-number">0</span>)
+}
+</code></pre>
+<p>不同之处在于我们使用了 <strong>?</strong> . 为了能够使用它，必须满足几个条件。首先，我们不能使用 <strong>?</strong> 仅适用于实现 <a href="https://doc.rust-lang.org/stable/std/ops/trait.Try.html">Try</a> trait 的类型。该函数还必须返回与我们使用 <strong>? 的类型相同的内容。</strong>（这就是我们的 <strong>foo</strong> 函数返回的原因 <code>io::Result</code>）。如果您的函数没有返回相同的内容，则始终可以更改错误以匹配：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">use</span> std::fs::File;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">foo</span>() <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;<span class="hljs-type">u32</span>, <span class="hljs-type">String</span>&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fichier</span> = File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>)
+        .<span class="hljs-title function_ invoke__">map_err</span>(|e| <span class="hljs-built_in">format!</span>(<span class="hljs-string">"open error {:?}"</span>, e))?; <span class="hljs-comment">// On change io::Error en String</span>
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-title function_ invoke__">Ok</span>(<span class="hljs-number">0</span>)
+}
+</code></pre>
+<p>这就是本章的内容，您现在应该能够创建至少安全的代码。</p>

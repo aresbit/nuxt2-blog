@@ -1,5 +1,43 @@
 [
     {
+        "title": "Rust编程基础之错误处理",
+        "id": 4586,
+        "time": 1648045528025,
+        "modifyTime": 1648045528025,
+        "len": 4565,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust编程基础之错误处理",
+                "url": "#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"
+            },
+            {
+                "size": "big",
+                "text": "Result",
+                "url": "#id-Result"
+            },
+            {
+                "size": "big",
+                "text": "Option",
+                "url": "#id-Option"
+            },
+            {
+                "size": "big",
+                "text": "恐慌！",
+                "url": "#id-%E6%81%90%E6%85%8C%EF%BC%81"
+            },
+            {
+                "size": "big",
+                "text": "问题！",
+                "url": "#id-%E9%97%AE%E9%A2%98%EF%BC%81"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust编程基础之函数与表达式",
         "id": 7935,
         "time": 1648044837768,
