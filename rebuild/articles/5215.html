@@ -1,0 +1,78 @@
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><p>Rust编程基础之条件和模式匹配</p></a></h1>
+<p>我们将首先从条件开始：
+if / else if / else 的工作方式与 C/C++/Java 中的相同：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">age</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">17</span>;
+
+<span class="hljs-keyword">if</span> age &gt;= <span class="hljs-number">18</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"majeur !"</span>);
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"mineur !"</span>);
+}
+<span class="hljs-comment">//你会注意到我没有在条件周围加上括号()：它们在 Rust 中是多余的。但是，如果您制作“子”条件，它们仍然是必需的：</span>
+<span class="hljs-keyword">if</span> age &gt; <span class="hljs-number">18</span> &amp;&amp; (age == <span class="hljs-number">20</span> || age == <span class="hljs-number">24</span>) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"ok"</span>);
+}
+<span class="hljs-comment">//另一方面，大括号{和}是强制的，即使你的条件块只包含一行代码！</span>
+<span class="hljs-comment">//简而言之：条件周围没有括号，但条件块周围是强制性的大括号。</span>
+</code></pre>
+<p>模式匹配</p>
+<p>简单地说，它是做不同事情的条件。多亏了这一点，我们才能以更直观的方式比较所谓的表达式。已经用过函数式语言的人应该不会觉得格格不入。作为代码通常比冗长的解释更好：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">my_string</span> = <span class="hljs-string">"hello"</span>;
+
+<span class="hljs-keyword">match</span> my_string {
+    <span class="hljs-string">"hello"</span> =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"English"</span>);
+    }
+    _ =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"err"</span>);
+    }
+}
+
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">match</span> b {
+    <span class="hljs-literal">true</span> =&gt; {
+        ...
+    }
+    <span class="hljs-literal">false</span> =&gt; {
+       ...
+    }
+}
+<span class="hljs-comment">//另一个使用i32的例子：</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">age</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">18</span>;
+<span class="hljs-keyword">match</span> age {
+    <span class="hljs-number">18</span> =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"R+"</span>);
+    }
+    x =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} !"</span>, x);
+    }
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">age</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">17</span>;
+<span class="hljs-keyword">match</span> age {
+    tmp <span class="hljs-keyword">if</span> tmp &gt; <span class="hljs-number">60</span> =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"no"</span>);
+    }
+    tmp <span class="hljs-keyword">if</span> tmp &gt; <span class="hljs-number">17</span> =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"oh !"</span>);
+    }
+    _ =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"en !"</span>);
+    }
+}
+<span class="hljs-comment">//可以将条件添加到模式匹配中,可以根据需要添加&amp;&amp;或||。</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">i</span> = <span class="hljs-number">0i32</span>;
+<span class="hljs-keyword">match</span> i {
+    <span class="hljs-number">10</span>..=<span class="hljs-number">100</span> =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"no"</span>),
+    x =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} "</span>, x)
+};
+
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">i</span> = <span class="hljs-number">0i32</span>;
+<span class="hljs-keyword">match</span> i {
+    x @ <span class="hljs-number">10</span>..=<span class="hljs-number">100</span> =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"no,{} "</span>, x),
+    x =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"yes,{} "</span>, x)
+};
+</code></pre>
