@@ -1,0 +1,179 @@
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E4%B9%8BCargo"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E4%B9%8BCargo"><p>Rust 编程基之 Cargo</p></a></h1>
+<p>Rust 有一个包管理器：<a href="https://github.com/rust-lang/cargo">Cargo</a>。它还极大地促进了编译管理（特别是通过允许自定义构建）以及外部依赖项。我将在本章中为您提供的所有信息都可以在<a href="https://doc.rust-lang.org/stable/cargo/">这里</a>找到。不要犹豫，看看吧！</p>
+<p><strong>要使用 Cargo</strong> 开始一个项目，没有什么比这更容易的了：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo new project</span>
+</code></pre>
+<p>将创建一个名为 <strong>project 的新文件夹：</strong></p>
+<pre><small>Plain text</small><div></div><code class="text language-text hljs language-plaintext"> - project
+     |
+     |- Cargo.toml
+     |- .gitignore
+     |- src/
+</code></pre>
+<p>所有源文件（通常是<strong>.rs</strong>）都应该放在一个名为 <strong>src</strong> 的子文件夹中。也就是说我们在 <strong>src</strong> 文件夹中会有一个 <strong>main.rs</strong> 文件：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"projet"</span>);
+}
+</code></pre>
+<p>现在要编译项目，您只需执行以下操作：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo build</span>
+</code></pre>
+<p>可执行文件将在 <strong>target/debug/</strong> 文件夹中生成。要启动它：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">./target/debug/project</span>
+projet
+</code></pre>
+<p>如果要立即编译并运行可执行文件，可以使用<strong>运行</strong>命令：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo run</span>
+</code></pre>
+<p>默认情况下，<strong>cargo 在<strong><em><em>调试</em></em></strong><em><em>模式下编译。性能比发布模式低很多，<strong>如果</strong></em></em>有</strong>性能问题，请注意检查你没有先在<strong>调试模式下编译。</strong>如果要在发布模式下编译，则需要传递 “--release” 选项：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo build --release</span>
+</code></pre>
+<p>当然，生成的可执行文件将在 <strong>target/release</strong> 文件夹中。</p>
+<p>它以相同的方式开始执行：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo run --release</span>
+</code></pre>
+<h3><sup class="fake-head" id="id-%E7%AE%A1%E7%90%86%E4%BE%9D%E8%B5%96%E9%A1%B9"></sup><a class="header-link" href="#id-%E7%AE%A1%E7%90%86%E4%BE%9D%E8%B5%96%E9%A1%B9"><p>管理依赖项</p></a></h3>
+<p>如果你想使用外部库，<strong>cargo</strong> 可以为你处理。有几种方法可以做到：</p>
+<ul>
+<li>该库在 <a href="https://crates.io/">crates.io</a> 上可用，在这种情况下，您只需指定所需的版本。</li>
+<li>要么不是：在这种情况下，如果它存在于你的计算机上，你可以指出它的访问路径，或者你可以给出它的 git 存储库的地址。</li>
+</ul>
+<p>例如，你想使用 GTK+ 库，它可以在 crates.io 上<a href="https://crates.io/crates/gtk">找到</a>，所以不用担心：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"mon_nouveau_project"</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">"0.0.1"</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">"Votre nom &lt;vous@exemple.com&gt;"</span>]
+
+<span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">gtk</span> = <span class="hljs-string">"0.3.0"</span>
+</code></pre>
+<p>因此，我们将 <strong>gtk</strong> 作为依赖项添加到我们的项目中。重要细节：<strong>每次添加 / 修改 / 删除依赖项时，都必须重新启动 cargo build 才能将其考虑在内！</strong>此外，如果要更新使用的库，则必须使用以下命令：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo update</span>
+</code></pre>
+<p>如果您想使用特定（早期）版本的 <strong>gtk</strong>，您可以像这样指定它：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">gtk</span> = <span class="hljs-string">"0.0.2"</span>
+</code></pre>
+<p>但是，可以通过版本控制做一些更有趣的事情。例如，您可以授权某些版本的库：</p>
+<p>“^” 特别允许：</p>
+<pre><small></small><div></div><code class="hljs language-go">^<span class="hljs-number">1.2</span><span class="hljs-number">.3</span> := &gt;=<span class="hljs-number">1.2</span><span class="hljs-number">.3</span> &lt;<span class="hljs-number">2.0</span><span class="hljs-number">.0</span>
+^<span class="hljs-number">0.2</span><span class="hljs-number">.3</span> := &gt;=<span class="hljs-number">0.2</span><span class="hljs-number">.3</span> &lt;<span class="hljs-number">0.3</span><span class="hljs-number">.0</span>
+^<span class="hljs-number">0.0</span><span class="hljs-number">.3</span> := &gt;=<span class="hljs-number">0.0</span><span class="hljs-number">.3</span> &lt;<span class="hljs-number">0.0</span><span class="hljs-number">.4</span>
+^<span class="hljs-number">0.0</span> := &gt;=<span class="hljs-number">0.0</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.1</span><span class="hljs-number">.0</span>
+^<span class="hljs-number">0</span> := &gt;=<span class="hljs-number">0.0</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+</code></pre>
+<p>“~” 允许：</p>
+<pre><small></small><div></div><code class="hljs language-1c"><span class="hljs-symbol">~1.2.3 </span>:= &gt;=<span class="hljs-number">1.2</span>.<span class="hljs-number">3</span> &lt;<span class="hljs-number">1.3</span>.<span class="hljs-number">0</span>
+<span class="hljs-symbol">~1.2 </span>:= &gt;=<span class="hljs-number">1.2</span>.<span class="hljs-number">0</span> &lt;<span class="hljs-number">1.3</span>.<span class="hljs-number">0</span>
+<span class="hljs-symbol">~1 </span>:= &gt;=<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span> &lt;<span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>
+</code></pre>
+<p>许可：</p>
+<pre><small></small><div></div><code class="hljs language-go">* := &gt;=<span class="hljs-number">0.0</span><span class="hljs-number">.0</span>
+<span class="hljs-number">1.</span>* := &gt;=<span class="hljs-number">1.0</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">2.0</span><span class="hljs-number">.0</span>
+<span class="hljs-number">1.2</span>.* := &gt;=<span class="hljs-number">1.2</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">1.3</span><span class="hljs-number">.0</span>
+</code></pre>
+<p>最后，（不）平等的符号允许：</p>
+<pre><small></small><div></div><code class="hljs language-asciidoc">&gt;= 1.2.0
+&gt; 1
+&lt; 2
+<span class="hljs-section">= 1.2.3</span>
+</code></pre>
+<p>可以用逗号分隔多个要求：<code>&gt;= 1.2, &lt; 1.5.</code>.</p>
+<p>现在让我们看看如何将依赖项添加到不在 <a href="https://crates.io/">crates.io</a> 上的库（或者存在但由于某种原因您不想通过它）。</p>
+<p>在继续之前，我想指出，如果您想尝试 <code>gtk</code> 它，强烈建议您查看他们的<a href="https://gtk-rs.org/">网站</a>以按照安装说明进行操作！</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"mon_nouveau_project"</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">"0.0.1"</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">"Votre nom &lt;vous@exemple.com&gt;"</span>]
+
+<span class="hljs-section">[dependencies.gtk]</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">"https://github.com/gtk-rs/gtk"</span>
+</code></pre>
+<p>这里我们已经指出 <strong>gtk</strong> 库位于这个 github 地址。您也可能已经下载了它，在这种情况下，您必须指出它的位置：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[dependencies.gtk]</span>
+<span class="hljs-attr">path</span> = <span class="hljs-string">"chemin/vers/gtk"</span>
+</code></pre>
+<p>货物文件大致如下所示：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"mon_nouveau_project"</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">"0.0.1"</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">"Votre nom &lt;vous@exemple.com&gt;"</span>]
+
+<span class="hljs-section">[dependencies.gtk]</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">"https://github.com/gtk-rs/gtk"</span>
+
+<span class="hljs-section">[dependencies.gsl]</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">"0.0.1"</span> <span class="hljs-comment"># optionnel</span>
+<span class="hljs-attr">path</span> = <span class="hljs-string">"path/vers/gsl"</span>
+
+<span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">sdl</span> = <span class="hljs-string">"0.3"</span>
+<span class="hljs-attr">cactus</span> = <span class="hljs-string">"0.2.3"</span>
+</code></pre>
+<h3><sup class="fake-head" id="id-%E5%9C%A8%20crates.io%20%E4%B8%8A%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AA%E5%BA%93"></sup><a class="header-link" href="#id-%E5%9C%A8%20crates.io%20%E4%B8%8A%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AA%E5%BA%93"><p>在 crates.io 上发布一个库</p></a></h3>
+<p>您已经创建了一个库，并且希望将其提供给其他开发人员？无忧无虑！首先，您需要在 <a href="https://crates.io/">crates.io</a> 上拥有一个帐户（目前看来您必须在 github 上拥有一个帐户才能连接到 <a href="https://crates.io/">crates.io</a>）。完成后，转到您的<a href="https://crates.io/me">帐户</a>页面。你应该看到上面写着：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs">cargo login abcdefghijklmnopqrstuvwxyz012345
+</code></pre>
+<p>在您的计算机上运行此命令，以便货物可以识别您。<strong>重要提示：不得传输此密钥！！！</strong>如果要向除您以外的任何人披露，请立即删除并重新生成一个新的！</p>
+<p>现在让我们看看我们可以指定以帮助 “识别” 我们的库的元数据：</p>
+<ul>
+<li><strong>description</strong>：库的简要描述。</li>
+<li><strong>文档</strong>：您的库文档所在页面的 URL。</li>
+<li><strong>homepage</strong>：您图书馆的展示页面的 URL。</li>
+<li><strong>repository</strong>：库的源代码所在的存储库的 URL。</li>
+<li><strong>自述</strong>文件：README 文件位置的路径（相对于 <strong>Cargo.toml</strong> 文件）。</li>
+<li><strong>关键字</strong>：用于对库进行分类的关键字。</li>
+<li><strong>license</strong>：您的图书馆的许可证。您可以通过用 “/” 分隔它们来放置多个。可在<a href="http://spdx.org/licenses/">此处</a>找到可用许可证的列表。</li>
+<li><strong>license-file</strong>：如果您要查找的许可证不在可用许可证列表中，您可以提供包含您的许可证的文件的路径（相对于 <strong>Cargo.toml</strong> 文件）。</li>
+</ul>
+<p>在这里，我将给你来自 <strong>GTK 库的</strong><strong> Cargo.toml</strong> 文件的内容，以便你有一个例子：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"gtk"</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">"0.0.2"</span>
+<span class="hljs-attr">authors</span> = [<span class="hljs-string">"The Gtk-rs Project Developers"</span>]
+
+<span class="hljs-attr">description</span> = <span class="hljs-string">"Rust bindings for the GTK+ library"</span>
+<span class="hljs-attr">repository</span> = <span class="hljs-string">"https://github.com/rust-gnome/gtk"</span>
+<span class="hljs-attr">license</span> = <span class="hljs-string">"MIT"</span>
+<span class="hljs-attr">homepage</span> = <span class="hljs-string">"https://github.com/rust-gnome/gtk"</span>
+<span class="hljs-attr">documentation</span> = <span class="hljs-string">"https://github.com/rust-gnome/gtk"</span>
+
+<span class="hljs-attr">readme</span> = <span class="hljs-string">"README.md"</span>
+
+<span class="hljs-attr">keywords</span> = [<span class="hljs-string">"gtk"</span>, <span class="hljs-string">"gnome"</span>, <span class="hljs-string">"GUI"</span>]
+
+<span class="hljs-section">[lib]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"gtk"</span>
+
+<span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">"gtk_3_6"</span>]
+<span class="hljs-attr">gtk_3_4</span> = [<span class="hljs-string">"gtk-sys/gtk_3_4"</span>, <span class="hljs-string">"gdk/gdk_3_4"</span>]
+<span class="hljs-attr">gtk_3_6</span> = [<span class="hljs-string">"gtk-sys/gtk_3_6"</span>, <span class="hljs-string">"gdk/gdk_3_6"</span>, <span class="hljs-string">"gtk_3_4"</span>]
+<span class="hljs-attr">gtk_3_8</span> = [<span class="hljs-string">"gtk-sys/gtk_3_8"</span>, <span class="hljs-string">"gdk/gdk_3_8"</span>, <span class="hljs-string">"gtk_3_6"</span>]
+<span class="hljs-attr">gtk_3_10</span> = [<span class="hljs-string">"gtk-sys/gtk_3_10"</span>, <span class="hljs-string">"gdk/gdk_3_10"</span>, <span class="hljs-string">"cairo-rs/cairo_1_12"</span>, <span class="hljs-string">"gtk_3_8"</span>]
+<span class="hljs-attr">gtk_3_12</span> = [<span class="hljs-string">"gtk-sys/gtk_3_12"</span>, <span class="hljs-string">"gdk/gdk_3_12"</span>, <span class="hljs-string">"gtk_3_10"</span>]
+<span class="hljs-attr">gtk_3_14</span> = [<span class="hljs-string">"gtk-sys/gtk_3_14"</span>, <span class="hljs-string">"gdk/gdk_3_14"</span>, <span class="hljs-string">"gtk_3_12"</span>]
+
+<span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">libc</span> = <span class="hljs-string">"0.1"</span>
+<span class="hljs-attr">gtk-sys</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">glib</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">glib-sys</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">gdk-sys</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">gdk</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">pango-sys</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">pango</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">cairo-sys-rs</span> = <span class="hljs-string">"^0"</span>
+<span class="hljs-attr">cairo-rs</span> = <span class="hljs-string">"^0"</span>
+</code></pre>
+<p>这是 ！如您所见，还有一个选项 <code>[features]</code>。<strong>对于 GTK</strong> ，它允许根据您计算机上的版本进行条件编译。例如，如果您拥有 3.4 版，则不能使用 3.12 版中的代码。</p>
+<p>我们终于到了最后一步：<strong>发布库</strong>。<strong>警告：无法删除已发布的库！</strong>可以发布的版本数量也没有限制。</p>
+<p><strong>您的图书馆将被发布的名称是由名称</strong> metadata 给出的名称：</p>
+<pre><small>TOML, also INI</small><div></div><code class="toml language-toml hljs language-ini"><span class="hljs-section">[package]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"super"</span>
+</code></pre>
+<p>如果一个名为 “super” 的库已经在 <a href="https://crates.io/">crates.io</a> 上发布，你将无法对它做任何事情，你必须找到另一个名字。一切准备就绪后，使用以下命令：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">cargo publish</span>
+</code></pre>
+<p>瞧，您的图书馆现在可以在 <a href="https://crates.io/">crates.io</a> 上看到，并且可供所有人使用！</p>
+<p>如果您想更全面地了解 <strong>Cargo</strong> 允许您做什么，我建议您再次阅读 <a href="https://doc.rust-lang.org/stable/cargo/"><strong>Cargo 书籍</strong></a>（英文）。</p>
