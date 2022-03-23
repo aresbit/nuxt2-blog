@@ -1,6 +1,6 @@
-<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><p>Rust编程基础之条件和模式匹配</p></a></h1>
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%9D%A1%E4%BB%B6%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><p>Rust 编程基础之条件和模式匹配</p></a></h1>
 <p>我们将首先从条件开始：
-if / else if / else 的工作方式与 C/C++/Java 中的相同：</p>
+if /else if /else 的工作方式与 C/C++/Java 中的相同：</p>
 <pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">age</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">17</span>;
 
 <span class="hljs-keyword">if</span> age &gt;= <span class="hljs-number">18</span> {
@@ -75,4 +75,24 @@ if / else if / else 的工作方式与 C/C++/Java 中的相同：</p>
     x @ <span class="hljs-number">10</span>..=<span class="hljs-number">100</span> =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"no,{} "</span>, x),
     x =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"yes,{} "</span>, x)
 };
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+<span class="hljs-comment">// loop pat match VS  while let</span>
+<span class="hljs-keyword">loop</span> {
+    <span class="hljs-keyword">match</span> v.<span class="hljs-title function_ invoke__">pop</span>() {
+        <span class="hljs-title function_ invoke__">Some</span>(x) =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, x),
+        <span class="hljs-literal">None</span> =&gt; <span class="hljs-keyword">break</span>,
+    }
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(x) = v.<span class="hljs-title function_ invoke__">pop</span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, x);
+}
+<span class="hljs-comment">// if let   pat = exp {...}</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-title function_ invoke__">Some</span>(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(<span class="hljs-number">10</span>) =  x {
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, &amp;x);
+}
 </code></pre>
