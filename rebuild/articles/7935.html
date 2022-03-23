@@ -1,0 +1,60 @@
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"><p>Rust 编程基础之函数与表达式</p></a></h1>
+<p>如何在 Rust 中创建函数。</p>
+<p>让我们从一个例子开始：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">addition</span>(nb1: <span class="hljs-type">i32</span>, nb2: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span>;
+</code></pre>
+<p>因此，这是一个名为 add 的函数<strong>，</strong>它接受 2 个类型变量 <a href="https://doc.rust-lang.org/stable/std/primitive.i32.html"><code>i32</code></a>作为参数并返回一个 <a href="https://doc.rust-lang.org/stable/std/primitive.i32.html"><code>i32</code></a>. 与您已经知道的没有什么不同。现在一个使用示例：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"1 + 2 = {}"</span>, <span class="hljs-title function_ invoke__">addition</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">addition</span>(nb1: <span class="hljs-type">i32</span>, nb2: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> {
+    nb1 + nb2
+}
+</code></pre>
+<p>其中显示：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs">1 + 2 = 3
+</code></pre>
+<p>Rust 推荐这种方式写：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_bigger</span>(nb1: <span class="hljs-type">i32</span>, nb2: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span>  <span class="hljs-type">i32</span> {
+    <span class="hljs-keyword">if</span> nb1 &gt; nb2 {
+        nb1
+    } <span class="hljs-keyword">else</span> {
+        nb2
+    }
+}
+</code></pre>
+<p>还有最后一点需要澄清：<a href="https://doc.rust-lang.org/stable/std/macro.println.html"><strong>println！</strong></a>以及所有带有 “！” 的不是函数，它们是<strong>宏</strong>。</p>
+<p>“类型 <strong>()</strong>？它是某种 <strong>null</strong> 吗？”
+是和不是。在 <strong>Rust</strong> 中，它是一个空元组和类型。它在 C/C++ 中最接近的等价物是 <strong>void</strong> 类型。</p>
+<h2><sup class="fake-head" id="id-%E8%A1%A8%E8%BE%BE%E5%BC%8F"></sup><a class="header-link" href="#id-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><p>表达式</p></a></h2>
+<p>Rust 是一种基于表达式的语言。</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">var</span> = <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> {
+    <span class="hljs-number">1u32</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-number">2u32</span>
+};
+</code></pre>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">var</span> = (<span class="hljs-keyword">let</span> <span class="hljs-variable">var2</span> = <span class="hljs-number">1u32</span>); <span class="hljs-comment">// let 是特殊绑定形式，不是表达式</span>
+</code></pre>
+<p><strong>这仅仅是因为 let</strong> 关键字引入了赋值，因此不能被视为表达式。所以这是一个声明。因此，可以这样做：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">var</span> = <span class="hljs-number">0i32</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-variable">var2</span> = (var = <span class="hljs-number">1i32</span>);
+</code></pre>
+<p>因为 <strong>(var = 1i32)</strong> 被认为是一个表达式。</p>
+<p>不过要小心，赋值返回类型 <strong>()</strong>（它是一个空元组，它在 C/C++ 中最接近的等价物是我在前一章中向您解释过的 <strong>void</strong> 类型）。</p>
+<p>表达式的另一个重要点是它不能以分号结尾。</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">test_expression</span>(x: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> {
+    <span class="hljs-keyword">if</span> x &lt; <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} &lt; 0"</span>, x);
+        -<span class="hljs-number">1</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> x == <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} == 0"</span>, x);
+        <span class="hljs-number">0</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} &gt; 0"</span>, x);
+        <span class="hljs-number">1</span>
+    }
+}
+</code></pre>
+<p>是时候继续前进了！</p>
