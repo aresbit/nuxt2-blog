@@ -1,5 +1,28 @@
 [
     {
+        "title": "Rust编程基础之循环",
+        "id": 9996,
+        "time": 1648043597328,
+        "modifyTime": 1648043597328,
+        "len": 2224,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust编程基础之循环",
+                "url": "#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BE%AA%E7%8E%AF"
+            },
+            {
+                "size": "big",
+                "text": "枚举",
+                "url": "#id-%E6%9E%9A%E4%B8%BE"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust编程基础之条件和模式匹配",
         "id": 5215,
         "time": 1648042239091,

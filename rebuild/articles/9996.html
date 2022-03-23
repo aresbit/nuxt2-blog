@@ -1,0 +1,125 @@
+<h1><sup class="fake-head" id="id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BE%AA%E7%8E%AF"></sup><a class="header-link" href="#id-Rust%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%BE%AA%E7%8E%AF"><p>Rust 编程基础之循环</p></a></h1>
+<p>循环是编程的基础之一，因此必须了解它们在 Rust 中是如何工作的。</p>
+<p>与其他语言一样，只要满足其条件，它就会继续。例子 ：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">10</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"hi!"</span>);
+    i += <span class="hljs-number">1</span>;
+}
+</code></pre>
+<p>在这里，只要 i 小于 10，程序就会打印 hello。</p>
+<p>但是，须注意几件事：</p>
+<ul>
+<li>您会再次注意到条件周围没有括号！</li>
+<li>就像条件一样，大括号又是<strong>强制性</strong>的！</li>
+</ul>
+<p><strong>也可以使用 loop</strong> 关键字（而不是 a <code>while true</code>）编写无限循环：</p>
+<p>我想你们都想知道：“但这对我们有什么好处？”。举个例子：电子游戏。显示应持续显示直到退出。</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">跑步<span class="hljs-keyword">while</span> <span class="hljs-literal">true</span> {
+    <span class="hljs-comment">//...</span>
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">end</span> = <span class="hljs-literal">false</span>;
+
+<span class="hljs-keyword">while</span> end == <span class="hljs-literal">false</span> {
+    <span class="hljs-comment">//...</span>
+}
+</code></pre>
+<p>我们将简单地写：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">loop</span> {
+    <span class="hljs-comment">//...</span>
+}
+</code></pre>
+<p>现在你可能对自己说：“好的，但是我们如何停止这个循环呢？”。<strong>只需使用 break</strong> 关键字。让我们从一开始回到我们的例子：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span>: <span class="hljs-type">i32</span> = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">loop</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"bi!"</span>);
+    i += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">10</span> {
+        <span class="hljs-keyword">break</span>;
+    }
+}
+</code></pre>
+<p><strong>关于 break</strong> 和 <strong>return</strong> 关键字的一点提醒： <strong>break</strong> 关键字只允许您退出当前<strong>循环</strong>：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">loop</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Toujours là !"</span>);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0i32</span>;
+
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"f !"</span>);
+        i += <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">2</span> {
+            <span class="hljs-keyword">break</span>; 
+        }
+    }
+}
+</code></pre>
+<p><strong>当 return</strong> 关键字退出当前<strong>函数</strong>时：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"T !"</span>);
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">i</span> = <span class="hljs-number">0i32</span>;
+
+        <span class="hljs-keyword">loop</span> {
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"s"</span>);
+            i += <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">2</span> {
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+    }
+}
+</code></pre>
+<p>for 循环比前两个循环要复杂一些。它仅适用于实现 <a href="https://doc.rust-lang.org/stable/std/iter/trait.IntoIterator.html"><strong>IntoIterator</strong></a> trait 的对象。不知道什么是<strong>特质</strong>？, 暂时不重要，我们稍后再讨论。现在让我们看一下 <strong>for</strong> 循环如何工作的示例：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">4</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"i vaut : {}"</span>, i);
+}
+</code></pre>
+<p>这将显示：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs">i vaut : 0
+i vaut : 1
+i vaut : 2
+i vaut : 3
+</code></pre>
+<p>让我们举第二个例子：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">v</span> = <span class="hljs-built_in">vec!</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">6</span>);
+
+<span class="hljs-keyword">for</span> <span class="hljs-variable">value</span> <span class="hljs-keyword">in</span> v {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, value);
+}
+</code></pre>
+<p>这将显示：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs">1
+4
+5
+10
+6
+</code></pre>
+<h3><sup class="fake-head" id="id-%E6%9E%9A%E4%B8%BE"></sup><a class="header-link" href="#id-%E6%9E%9A%E4%B8%BE"><p>枚举</p></a></h3>
+<p>如果你想知道你迭代了多少次，你可以使用 <a href="https://doc.rust-lang.org/nightly/std/iter/trait.Iterator.html#method.enumerate">enumerate</a> 函数：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-title function_ invoke__">for</span> (i, j) <span class="hljs-title function_ invoke__">in</span> (<span class="hljs-number">5</span>..<span class="hljs-number">10</span>).<span class="hljs-title function_ invoke__">enumerate</span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"i = {}"</span>, i, j);
+}
+</code></pre>
+<p>这将显示：</p>
+<pre><small>Shell Session</small><div></div><code class="Shell language-Shell hljs">i = 0  
+i = 1 
+i = 2 
+i = 3 
+i = 4 
+</code></pre>
+<p><strong>因此， i</strong> 是循环内执行的迭代次数，而 <strong>j</strong> 连续取范围值。</p>
+<p>另一个有趣的事情要知道：<strong>命名循环</strong>！最好从一个例子开始：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-symbol">'global</span>: <span class="hljs-keyword">for</span> <span class="hljs-variable">_</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">10</span> {
+    <span class="hljs-symbol">'outer</span>: <span class="hljs-keyword">for</span> <span class="hljs-variable">x</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">10</span> {
+        <span class="hljs-symbol">'inner</span>: <span class="hljs-keyword">for</span> <span class="hljs-variable">y</span> <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">10</span> {
+            <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">3</span> { <span class="hljs-keyword">break</span> <span class="hljs-symbol">'global</span>; } 
+            <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> { <span class="hljs-keyword">continue</span> <span class="hljs-symbol">'outer</span>; } 
+            <span class="hljs-keyword">if</span> y % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> { <span class="hljs-keyword">continue</span> <span class="hljs-symbol">'inner</span>; } 
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"x: {}, y: {}"</span>, x, y);
+        }
+    }
+}
+</code></pre>
