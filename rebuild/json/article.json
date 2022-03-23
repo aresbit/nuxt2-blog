@@ -1,5 +1,17 @@
 [
     {
+        "title": "Rust编程基础",
+        "id": 6436,
+        "time": 1648038968613,
+        "modifyTime": 1648038968613,
+        "len": 388,
+        "encrypt": false,
+        "menu": [],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "web前端开发心智模型",
         "id": 4012,
         "time": 1647940032298,
