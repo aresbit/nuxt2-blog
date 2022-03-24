@@ -1,5 +1,58 @@
 [
     {
+        "title": "程序语言的演变",
+        "id": 2079,
+        "time": 1648120007853,
+        "modifyTime": 1648120007853,
+        "len": 15233,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Programming Language Evolution",
+                "url": "#id-Programming%20Language%20Evolution"
+            },
+            {
+                "size": "big",
+                "text": "From GOTOs to the structured code",
+                "url": "#id-From%20GOTOs%20to%20the%20structured%20code"
+            },
+            {
+                "size": "big",
+                "text": "Objects and pointers",
+                "url": "#id-Objects%20and%20pointers"
+            },
+            {
+                "size": "big",
+                "text": "The scale of software and extensions",
+                "url": "#id-The%20scale%20of%20software%20and%20extensions"
+            },
+            {
+                "size": "big",
+                "text": "Patterns, Boilerplate, Features",
+                "url": "#id-Patterns%2C%20%3Cwdautohl-customtag%20style%3D%22font-weight%3Abold%3Bcolor%3Ared%3Bfont-size%3Ainherit%3Bdisplay%3Ainline%3B%22%20id%3D%22wdautohl_id_25%22%20class%3D%22wdautohl_Ym9pbGVycGxhdGU_%22%3EBoilerplate%3C%2Fwdautohl-customtag%3E%2C%20Features"
+            },
+            {
+                "size": "big",
+                "text": "Being modern, staying modern",
+                "url": "#id-Being%20modern%2C%20staying%20modern"
+            },
+            {
+                "size": "big",
+                "text": "Removing obsolete features",
+                "url": "#id-Removing%20obsolete%20features"
+            },
+            {
+                "size": "big",
+                "text": "Further reading",
+                "url": "#id-Further%20reading"
+            }
+        ],
+        "tags": [
+            "PL"
+        ]
+    },
+    {
         "title": "Rust编程基之Cargo",
         "id": 6139,
         "time": 1648052491017,
