@@ -1,5 +1,23 @@
 [
     {
+        "title": "Rust 的细节之Product Type",
+        "id": 5632,
+        "time": 1648122208205,
+        "modifyTime": 1648122208205,
+        "len": 3261,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust 的细节之Product Type",
+                "url": "#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8BProduct%20Type"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust 的细节之 sum type",
         "id": 3478,
         "time": 1648121079808,

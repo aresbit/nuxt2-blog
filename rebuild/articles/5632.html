@@ -1,0 +1,181 @@
+<h1><sup class="fake-head" id="id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8BProduct%20Type"></sup><a class="header-link" href="#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8BProduct%20Type"><p>Rust 的细节之 Product Type</p></a></h1>
+<p>注意，Rust 中有四种类型的结构：</p>
+<ol>
+<li>元组结构。</li>
+<li>构造结构（我们也说不透明结构）。</li>
+<li>“经典” 结构（如在 C 中）。
+4.“new type” 结构（元组和 “经典” 结构的混合）。
+他们每个人的声明示例：</li>
+</ol>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-comment">// tuple struct </span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Tuple</span>(<span class="hljs-type">isize</span>, <span class="hljs-type">usize</span>, <span class="hljs-type">bool</span>);
+
+<span class="hljs-comment">// 类型构造</span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Unitaire</span>;
+
+<span class="hljs-comment">//  笛卡尔</span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Classique</span> {
+    name: <span class="hljs-type">String</span>,
+    age: <span class="hljs-type">usize</span>,
+    a_un_chat: <span class="hljs-type">bool</span>,
+}
+
+<span class="hljs-comment">//  "newtype"</span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">StructureTuple</span>(<span class="hljs-type">usize</span>);
+<span class="hljs-comment">//现在让我们看看我们如何实例化它们：</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">t</span> = <span class="hljs-title function_ invoke__">Tuple</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>); 
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">u</span> = Unitaire; 
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">c</span> = Classique {
+    name: <span class="hljs-string">"Moi"</span>.<span class="hljs-title function_ invoke__">to_owned</span>(), 
+    age: <span class="hljs-number">18</span>,
+    a_un_chat: <span class="hljs-literal">false</span>,
+}; 
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">st</span> = <span class="hljs-title function_ invoke__">StructureTuple</span>(<span class="hljs-number">1</span>); 
+</code></pre>
+<p>你应该知道，按照惯例， Rust 中结构的名称必须用驼峰式书写。例如，调用结构 “my_structure” 将是 “无效的”。</p>
+<p>按照 Rust 约定，函数名称必须以蛇形大小写。所以 “MyFunction” 是无效的，“my_function” 是正确的。</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Distance</span>(<span class="hljs-type">isize</span>);
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">distance</span> = <span class="hljs-title function_ invoke__">Distance</span>(<span class="hljs-number">23</span>);
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">Distance</span>(longueur) = distance;
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">" {}"</span>, longueur);
+</code></pre>
+<p>它允许您 “隐藏” 一个类型，这在某些情况下可能很有用。</p>
+<p>解构
+可以使用模式匹配来解构结构：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Point</span> {
+    x: <span class="hljs-type">i32</span>,
+    y: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">origin</span> = Point { x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span> };
+
+<span class="hljs-keyword">match</span> origin {
+    Point { x, y } =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"({},{})"</span>, x, y),
+}
+<span class="hljs-comment">//也可以使用“..”只匹配某些字段：</span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Point</span> {
+    x: <span class="hljs-type">i32</span>,
+    y: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">origin</span> = Point { x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span> };
+
+<span class="hljs-keyword">match</span> origin {
+    Point { y, .. } =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">"(..,{})"</span>, y),
+}
+</code></pre>
+<p>在这里，将无法显示 “x” 变量的内容，因为我们在匹配过程中故意忽略了它。</p>
+<p>现在解释已经完成，让我们看看如何将方法添加到结构中。</p>
+<p>方法
+除了向结构添加方法使其面向对象这一事实之外，它还可以允许您强制开发人员调用您的构造函数之一，而不是让它初始化结构的所有元素。例子 ：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Distance</span> {
+    metre: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Distance</span> {
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>() <span class="hljs-punctuation">-&gt;</span> Distance {
+        Distance {
+            metre: <span class="hljs-number">0</span>,
+        }
+    }
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new_with_value</span>(valeur: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> Distance {
+        Distance {
+            metre: valeur,
+        }
+    }
+}
+
+
+<span class="hljs-keyword">mod</span> fichier;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = fichier::Distance::<span class="hljs-title function_ invoke__">new</span>();
+    <span class="hljs-comment">// or</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = fichier::Distance::<span class="hljs-title function_ invoke__">new_with_value</span>(<span class="hljs-number">10</span>);
+}
+</code></pre>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-comment">//现在，让我们添加一个方法来将此距离转换为公里：</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Distance</span> {
+    metre: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Distance</span> {
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>() <span class="hljs-punctuation">-&gt;</span> Distance {
+        Distance {
+            metre: <span class="hljs-number">0</span>,
+        }
+    }
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new_with_value</span>(valeur: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> Distance {
+        Distance {
+            metre: valeur,
+        }
+    }
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">convert_in_kilometers</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">i32</span> {
+        <span class="hljs-keyword">self</span>.metre / <span class="hljs-number">1000</span>
+    }
+}
+
+<span class="hljs-keyword">mod</span> fichier;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = fichier::Distance::<span class="hljs-title function_ invoke__">new</span>();
+    <span class="hljs-comment">// ou</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = fichier::Distance::<span class="hljs-title function_ invoke__">new_with_value</span>(<span class="hljs-number">10</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"distance en kilometres : {}"</span>, d.<span class="hljs-title function_ invoke__">convert_in_kilometers</span>());
+}
+</code></pre>
+<p>需要注意的重要一点是，不以 self 作为第一个参数的方法是静态方法。因此 new 和 new<em>with</em>value 方法是静态方法，而 convert<em>in</em>kilometers 不是。</p>
+<p>现在让我们来看看 self 前面的 '&amp;' ：这是对象的生命周期。我们将在另一章讨论这个问题。</p>
+<p>现在，如果你想创建一个方法来改变距离，你需要指定 self 是可变的（因为 Rust 中的所有变量默认都是常量）。例子 ：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">impl</span> <span class="hljs-title class_">Distance</span> {
+    <span class="hljs-comment">// les autres méthodes</span>
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">set_distance</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, nouvelle_distance: <span class="hljs-type">i32</span>) {
+        <span class="hljs-keyword">self</span>.metre = nouvelle_distance;
+    }
+}
+</code></pre>
+<p>简单地 ！</p>
+<p>更新语法
+一个结构可以包含 “..” 来表示它想要从另一个结构复制某些字段。例子 ：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Point3d</span> {
+    x: <span class="hljs-type">i32</span>,
+    y: <span class="hljs-type">i32</span>,
+    z: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">point</span> = Point3d { x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>, z: <span class="hljs-number">0</span> };
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">point2</span> = Point3d { y: <span class="hljs-number">1</span>, .. point }; <span class="hljs-comment">// et ici on prend x et z de point</span>
+
+<span class="hljs-comment">//现在让我们看看如何创建析构函数（当我们的对象被销毁时自动调用的方法）：</span>
+
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Distance</span> {
+    metre: <span class="hljs-type">i32</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Distance</span> {
+    <span class="hljs-comment">// fonctions membres</span>
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Drop</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Distance</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">drop</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"La structure Distance a été détruite !"</span>);
+    }
+}
+</code></pre>
+<p>“那个 Drop for Distance impl 是从哪里来的？！”</p>
+<p>我们已经在距离结构中实现了 Drop trait 。当对象被销毁时，该方法被调用。我知道这并不能告诉你特征是什么，但要获得更多解释，你必须阅读下一章！</p>
