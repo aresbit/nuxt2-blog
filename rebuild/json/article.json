@@ -418,34 +418,6 @@
         ]
     },
     {
-        "title": "使用Nuxtjs+cloudflare page部署高可用的半静态博客",
-        "id": 7832,
-        "time": 1617817756615,
-        "modifyTime": 1645807753956,
-        "len": 1116,
-        "encrypt": false,
-        "menu": [
-            {
-                "size": "big",
-                "text": "想法",
-                "url": "#id-%E6%83%B3%E6%B3%95"
-            },
-            {
-                "size": "big",
-                "text": "操作",
-                "url": "#id-%E6%93%8D%E4%BD%9C"
-            },
-            {
-                "size": "big",
-                "text": "后话",
-                "url": "#id-%E5%90%8E%E8%AF%9D"
-            }
-        ],
-        "tags": [
-            "前端"
-        ]
-    },
-    {
         "title": "树莓派初次使用小记",
         "id": 1147,
         "time": 1613825966312,
