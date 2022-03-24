@@ -322,34 +322,6 @@
         ]
     },
     {
-        "title": "vite+vue3下如何使用动态导入的svg-sprite",
-        "id": 9074,
-        "time": 1632102764931,
-        "modifyTime": 1632102764931,
-        "len": 3032,
-        "encrypt": false,
-        "menu": [
-            {
-                "size": "big",
-                "text": "思路",
-                "url": "#id-%E6%80%9D%E8%B7%AF"
-            },
-            {
-                "size": "big",
-                "text": "代码",
-                "url": "#id-%E4%BB%A3%E7%A0%81"
-            },
-            {
-                "size": "big",
-                "text": "小结",
-                "url": "#id-%E5%B0%8F%E7%BB%93"
-            }
-        ],
-        "tags": [
-            "vue"
-        ]
-    },
-    {
         "title": "小诗",
         "id": 3621,
         "time": 1623945018957,
