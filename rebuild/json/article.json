@@ -1,5 +1,23 @@
 [
     {
+        "title": "Rust 的细节之 sum type",
+        "id": 3478,
+        "time": 1648121079808,
+        "modifyTime": 1648121079808,
+        "len": 1843,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust 的细节之sum type",
+                "url": "#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Bsum%20type"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "程序语言的演变",
         "id": 2079,
         "time": 1648120007853,

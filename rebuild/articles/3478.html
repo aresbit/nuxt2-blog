@@ -1,0 +1,77 @@
+<h1><sup class="fake-head" id="id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Bsum%20type"></sup><a class="header-link" href="#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Bsum%20type"><p>Rust 的细节之 sum type</p></a></h1>
+<p>枚举与您在 C 或 C++ 等命令式语言中可能遇到的枚举非常不同。它们不仅代表数字，还代表更多：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">UneEnum</span> {
+    Variant,
+    VariantStruct { a: <span class="hljs-type">i32</span>, b: <span class="hljs-type">i32</span> },
+    <span class="hljs-title function_ invoke__">VariantTuple</span>(<span class="hljs-type">String</span>),
+}
+</code></pre>
+<p>枚举的每个 “字段” 都称为一个变体。正如您在上面看到的，枚举允许更多。但是，也可以声明和使用更接近于 C/C++ 中的枚举：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">&lt;h1&gt;&lt;sup class=<span class="hljs-string">"fake-head"</span> id=<span class="hljs-string">"id-%5Bderive(Debug)%5D"</span>&gt;&lt;/sup&gt;&lt;a class=<span class="hljs-string">"header-link"</span> href=<span class="hljs-string">"#id-%5Bderive(Debug)%5D"</span>&gt;&lt;p&gt;[<span class="hljs-title function_ invoke__">derive</span>(<span class="hljs-built_in">Debug</span>)]&lt;/p&gt;&lt;/a&gt;&lt;/h1&gt;
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">UneEnum</span> {
+    Variant = <span class="hljs-number">12</span>,
+    Variant2,
+}
+</code></pre>
+<p>UneEnum::Variant 因此将值 12，UneEnum::Variant2 另一方面将不值 13！如果您希望这样，您将需要为每个变体指定一个值。</p>
+<p>枚举在很多情况下都非常有用。例如，您编写了一个回合制视频游戏（国际象棋游戏？）。在他的回合中，玩家可以移动棋子或什么也不做。这可以用以下方式表示：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Action</span> {
+    Bouger { piece: Piece, nouvelle_position: Position },
+    Passer,
+}
+</code></pre>
+<p>如果玩家移动一块，我们将有，Action::Bouger 否则我们将有 Action::Passer。</p>
+<p>IP 地址解析的另一个例子：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">IPKind</span> {
+    <span class="hljs-title function_ invoke__">IPV4</span>(<span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>),
+    <span class="hljs-title function_ invoke__">IPV6</span>(<span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>),
+}
+
+<span class="hljs-comment">//这个枚举将像这样使用：</span>
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">parse_ip</span>(ip: &amp;<span class="hljs-type">str</span>) <span class="hljs-punctuation">-&gt;</span> IPKind {
+    <span class="hljs-comment">// le parsing</span>
+}
+
+<span class="hljs-keyword">match</span> <span class="hljs-title function_ invoke__">parse_ip</span>(<span class="hljs-string">"127.0.0.1"</span>) {
+    IPKind::<span class="hljs-title function_ invoke__">IPV4</span>(_, _, _, _) =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"c'est une IPv4 !"</span>);
+    }
+    IPKind::<span class="hljs-title function_ invoke__">IPV6</span>(_, _, _, _) =&gt; {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"c'est une IPv6 !"</span>);
+    }
+}
+<span class="hljs-comment">// 您还可以使用枚举来处理 [ Result ] 和 [ Option ] 枚举所允许的错误：</span>
+
+<span class="hljs-keyword">match</span> File::<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">"fichier.txt"</span>) {
+    <span class="hljs-title function_ invoke__">Ok</span>(fichier) =&gt; {
+        <span class="hljs-comment">// le fichier existe et on a les droits d'accès, on peut s'en servir !</span>
+    }
+    <span class="hljs-title function_ invoke__">Err</span>(e) =&gt; {
+        <span class="hljs-comment">// le fichier n'existe pas ou on n'a pas les droits d'accès, on ne peut rien faire...</span>
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Erreur en tentant d'ouvrir le fichier : {:?}"</span>, e);
+    }
+}
+</code></pre>
+<p>这是枚举的两种非常不同的用法，但它们是非常重要的元素，允许 Rust 防止其用户使用无效类型。</p>
+<p>在枚举上实现方法
+就像结构（我们将在下一章中看到）一样，可以在枚举上实现方法（和特征！）。我将在这里给出一个简单的示例，但我将在下一章中更详细地讨论它：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-comment">// On reprend notre enum précédente :</span>
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">IPKind</span> {
+    <span class="hljs-title function_ invoke__">IPV4</span>(<span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>, <span class="hljs-type">u8</span>),
+    <span class="hljs-title function_ invoke__">IPV6</span>(<span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>, <span class="hljs-type">u32</span>),
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">IPKind</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">is_v4</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">match</span> *<span class="hljs-keyword">self</span> {
+            IPKind::<span class="hljs-title function_ invoke__">IPV4</span>(_, _, _, _) =&gt; <span class="hljs-literal">true</span>,
+            _ =&gt; <span class="hljs-literal">false</span>,
+        }
+    }
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">is_v6</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">bool</span> {
+        !<span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">is_v4</span>() <span class="hljs-comment">// je suis un peu fainéant :)</span>
+    }
+}
+</code></pre>
