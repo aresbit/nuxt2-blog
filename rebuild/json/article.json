@@ -1,5 +1,98 @@
 [
     {
+        "title": "Rusts Module System Explained",
+        "id": 5034,
+        "time": 1648235448660,
+        "modifyTime": 1648235448660,
+        "len": 22015,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rusts Module System Explained",
+                "url": "#id-%5B%5D(%23)Rusts%20Module%20System%20Explained"
+            },
+            {
+                "size": "big",
+                "text": "Why do modules exist?",
+                "url": "#id-%5B%5D(%23why-do-modules-exist)Why%20do%20modules%20exist%3F"
+            },
+            {
+                "size": "big",
+                "text": "The module tree",
+                "url": "#id-%5B%5D(%23the-module-tree)The%20module%20tree"
+            },
+            {
+                "size": "big",
+                "text": "Submodules",
+                "url": "#id-%5B%5D(%23submodules)Submodules"
+            },
+            {
+                "size": "big",
+                "text": "An example",
+                "url": "#id-%5B%5D(%23an-example)An%20example"
+            },
+            {
+                "size": "big",
+                "text": "Items and paths",
+                "url": "#id-%5B%5D(%23items-and-paths)Items%20and%20paths"
+            },
+            {
+                "size": "big",
+                "text": "Visibility",
+                "url": "#id-%5B%5D(%23visibility)Visibility"
+            },
+            {
+                "size": "big",
+                "text": "Encapsulation",
+                "url": "#id-%5B%5D(%23encapsulation)%3Cwdautohl-customtag%20style%3D%22font-weight%3Abold%3Bcolor%3Ared%3Bfont-size%3Ainherit%3Bdisplay%3Ainline%3B%22%20id%3D%22wdautohl_id_19%22%20class%3D%22wdautohl_ZW5jYXBzdWxhdGlvbg__%22%3EEncapsulation%3C%2Fwdautohl-customtag%3E"
+            },
+            {
+                "size": "big",
+                "text": "Fine-grained visibility",
+                "url": "#id-%5B%5D(%23fine-grained-visibility)Fine-grained%20visibility"
+            },
+            {
+                "size": "big",
+                "text": "Visibilities overview",
+                "url": "#id-%5B%5D(%23visibilities-overview)Visibilities%20overview"
+            },
+            {
+                "size": "big",
+                "text": "Exports",
+                "url": "#id-%5B%5D(%23exports)Exports"
+            },
+            {
+                "size": "big",
+                "text": "Common pitfalls",
+                "url": "#id-%5B%5D(%23common-pitfalls)Common%20%3Cwdautohl-customtag%20style%3D%22font-weight%3Abold%3Bcolor%3Ared%3Bfont-size%3Ainherit%3Bdisplay%3Ainline%3B%22%20id%3D%22wdautohl_id_27%22%20class%3D%22wdautohl_cGl0ZmFsbA__%22%3Epitfalls%3C%2Fwdautohl-customtag%3E"
+            },
+            {
+                "size": "big",
+                "text": "Special cases",
+                "url": "#id-%5B%5D(%23special-cases)Special%20cases"
+            },
+            {
+                "size": "big",
+                "text": "Enum variants and fields",
+                "url": "#id-%5B%5D(%23enum-variants-and-fields)Enum%20variants%20and%20fields"
+            },
+            {
+                "size": "big",
+                "text": "Macros",
+                "url": "#id-%5B%5D(%23macros)Macros"
+            },
+            {
+                "size": "big",
+                "text": "Why are modules declared explicitly?",
+                "url": "#id-%5B%5D(%23why-are-modules-declared-explicitly)Why%20are%20modules%20declared%20explicitly%3F"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust 的细节之typeclass（trait）特质",
         "id": 2205,
         "time": 1648196729791,
