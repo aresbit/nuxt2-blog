@@ -1,0 +1,113 @@
+<h1><sup class="fake-head" id="id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Btypeclass%EF%BC%88trait%EF%BC%89%E7%89%B9%E8%B4%A8"></sup><a class="header-link" href="#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Btypeclass%EF%BC%88trait%EF%BC%89%E7%89%B9%E8%B4%A8"><p>Rust 的细节之 typeclass（trait）特质</p></a></h1>
+<p>让我们首先给出一个快速定义：特征是应用它的对象必须实现的一组方法。</p>
+<p>在上一章中，我们需要实现 drop 方法来实现 Drop trait 。如果您不确定，Rust 中到处都使用特征。我们甚至可以在 i32 或 f64 等简单类型上找到它们！</p>
+<p>我们将举一个非常简单的例子：加两个 f64。这里的文档告诉我们 Add trait 是在 f64 类型上实现的。这使我们能够：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">valeur</span> = <span class="hljs-number">1f64</span>;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, valeur + <span class="hljs-number">3f64</span>);
+
+<span class="hljs-comment">//Add是一个“默认”实现的特征。如果没有，您必须导入一个特征才能使用与其关联的函数。例子 ：</span>
+<span class="hljs-keyword">use</span> std::str::FromStr;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, f64::<span class="hljs-title function_ invoke__">from_str</span>(<span class="hljs-string">"3.6"</span>).<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"conversion failed"</span>));
+</code></pre>
+<p>容易不是吗？由标准库提供并在标准类型上实现的特征提供了很多功能。如果您需要某些东西，那么它很可能已经存在。由你来寻找。</p>
+<p>我向您展示了如何导入和使用特征，现在是时候看看如何创建一个特征了！</p>
+<p>创建
+这与创建结构比较相似：</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">trait</span> <span class="hljs-title class_">Animal</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_espece</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span>;
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_nom</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span>;
+}
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Chien</span> {
+    nom: <span class="hljs-type">String</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Chien</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_espece</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span> {
+        <span class="hljs-string">"Chien"</span>
+    }
+</code></pre>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs">    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_nom</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span> {
+        &amp;<span class="hljs-keyword">self</span>.nom
+    }
+}
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Chat</span> {
+    nom: <span class="hljs-type">String</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Chat</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_espece</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span> {
+        <span class="hljs-string">"Chat"</span>
+    }
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_nom</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span> {
+        &amp;<span class="hljs-keyword">self</span>.nom
+    }
+}
+</code></pre>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">chat</span> = Chat { nom: String::<span class="hljs-title function_ invoke__">from</span>(<span class="hljs-string">"Fifi"</span>) };
+<span class="hljs-keyword">let</span> <span class="hljs-variable">chien</span> = Chien { nom: String::<span class="hljs-title function_ invoke__">from</span>(<span class="hljs-string">"Loulou"</span>) };
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} est un {}"</span>, chat.<span class="hljs-title function_ invoke__">get_nom</span>(), chat.<span class="hljs-title function_ invoke__">get_espece</span>());
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} est un {}"</span>, chien.<span class="hljs-title function_ invoke__">get_nom</span>(), chien.<span class="hljs-title function_ invoke__">get_espece</span>());
+
+
+<span class="hljs-comment">//也可以直接在特征中编写方法的“默认”实现。这避免了必须为实现特征的每个对象重写方法。例子 ：</span>
+<span class="hljs-keyword">trait</span> <span class="hljs-title class_">Animal</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_espece</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span>;
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">presentation</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">String</span> {
+        <span class="hljs-built_in">format!</span>(<span class="hljs-string">"Je suis un {} !"</span>, <span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">get_espece</span>())
+    }
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Chat</span> {
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_espece</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> &amp;<span class="hljs-type">str</span> {
+        <span class="hljs-string">"Chat"</span>
+    }
+}
+<span class="hljs-comment">//这里我只定义get_espece方法，因为演示文稿已经做了我想要的。</span>
+</code></pre>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">afficher_infos</span>&lt;T: Animal&gt;(animal: &amp;T) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} est un {}"</span>, animal.<span class="hljs-title function_ invoke__">get_nom</span>(), animal.<span class="hljs-title function_ invoke__">get_espece</span>());
+}
+<span class="hljs-comment">//“这是什么&lt;T: Animal&gt;？！”</span>
+
+<span class="hljs-comment">//对于做过 C++ 或 Java 的人来说，它比较接近于模板。对于其他人，只知道发明模板是为了允许多态性。一个例子（还有一个！）：</span>
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">affiche_chat</span>(chat: &amp;Chat) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} est un {}"</span>, chat.<span class="hljs-title function_ invoke__">get_nom</span>(), chat.<span class="hljs-title function_ invoke__">get_espece</span>());
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">affiche_chien</span>(chien: &amp;Chien) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{} est un {}"</span>, chien.<span class="hljs-title function_ invoke__">get_nom</span>(), chien.<span class="hljs-title function_ invoke__">get_espece</span>());
+}
+</code></pre>
+<p>在这种情况下，没关系，它只代表两个函数。现在，如果我们想再添加 40 种动物，我们应该为每种动物编写一个函数！不是很实用… 因此使用泛型是最好的解决方案。这就是我们将在下一章中讨论的内容！</p>
+<pre><small>Rust</small><div></div><code class="rust language-rust hljs"><span class="hljs-keyword">let</span> <span class="hljs-variable">s</span> = <span class="hljs-string">"hello"</span>;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, s);
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, &amp;s[<span class="hljs-number">0</span>..<span class="hljs-number">2</span>]);
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, &amp;s[..<span class="hljs-number">3</span>]);
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{}"</span>, &amp;s[<span class="hljs-number">3</span>..]);
+<span class="hljs-comment">//这将给出：</span>
+
+hello
+he
+hel
+lo
+<span class="hljs-comment">//这也适用于切片：</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-variable">v</span>: &amp;[<span class="hljs-type">u8</span>] = &amp;[<span class="hljs-number">0</span>; <span class="hljs-number">10</span>]; <span class="hljs-comment">// on crée un slice contenant 10 '\0'</span>
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{:?}"</span>, &amp;v[<span class="hljs-number">0</span>..<span class="hljs-number">2</span>]);
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{:?}"</span>, &amp;v[..<span class="hljs-number">3</span>]);
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">"{:?}"</span>, &amp;v[<span class="hljs-number">3</span>..]);
+<span class="hljs-comment">//output</span>
+[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+</code></pre>
+<p>现在是谈论泛型的时候了。</p>

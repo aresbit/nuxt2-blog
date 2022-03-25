@@ -1,5 +1,23 @@
 [
     {
+        "title": "Rust 的细节之typeclass（trait）特质",
+        "id": 2205,
+        "time": 1648196729791,
+        "modifyTime": 1648196729791,
+        "len": 2422,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust 的细节之typeclass（trait）特质",
+                "url": "#id-Rust%20%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8Btypeclass%EF%BC%88trait%EF%BC%89%E7%89%B9%E8%B4%A8"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rust 的细节之Product Type",
         "id": 5632,
         "time": 1648122208205,
