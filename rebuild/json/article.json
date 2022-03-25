@@ -1,5 +1,53 @@
 [
     {
+        "title": "Rust的细节之模块系统",
+        "id": 1945,
+        "time": 1648247651278,
+        "modifyTime": 1648247651278,
+        "len": 3357,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Rust的细节之模块系统",
+                "url": "#id-Rust%E7%9A%84%E7%BB%86%E8%8A%82%E4%B9%8B%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F"
+            },
+            {
+                "size": "big",
+                "text": "如何隔离",
+                "url": "#id-%E5%A6%82%E4%BD%95%E9%9A%94%E7%A6%BB"
+            },
+            {
+                "size": "big",
+                "text": "接口暴露pub",
+                "url": "#id-%E6%8E%A5%E5%8F%A3%E6%9A%B4%E9%9C%B2pub"
+            },
+            {
+                "size": "big",
+                "text": "封装",
+                "url": "#id-%E5%B0%81%E8%A3%85"
+            },
+            {
+                "size": "big",
+                "text": "导出：",
+                "url": "#id-%E5%AF%BC%E5%87%BA%EF%BC%9A"
+            },
+            {
+                "size": "big",
+                "text": "陷阱",
+                "url": "#id-%E9%99%B7%E9%98%B1"
+            },
+            {
+                "size": "big",
+                "text": "宏",
+                "url": "#id-%E5%AE%8F"
+            }
+        ],
+        "tags": [
+            "rust"
+        ]
+    },
+    {
         "title": "Rusts Module System Explained",
         "id": 5034,
         "time": 1648235448660,
