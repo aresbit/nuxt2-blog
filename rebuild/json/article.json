@@ -1,5 +1,73 @@
 [
     {
+        "title": "clean code ",
+        "id": 2440,
+        "time": 1648418658965,
+        "modifyTime": 1648418658965,
+        "len": 6856,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "clean code",
+                "url": "#id-clean%20code"
+            },
+            {
+                "size": "big",
+                "text": "General rules 一般规则",
+                "url": "#id-General%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E4%B8%80%E8%88%AC%E8%A7%84%E5%88%99%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Design rules 设计规则",
+                "url": "#id-Design%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E8%AE%BE%E8%AE%A1%E8%A7%84%E5%88%99%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "understandability-tips",
+                "url": "#id-understandability-tips"
+            },
+            {
+                "size": "big",
+                "text": "Names rules 名字规则",
+                "url": "#id-Names%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%90%8D%E5%AD%97%E8%A7%84%E5%88%99%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Functions rules 函数规则",
+                "url": "#id-Functions%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Comments rules 注释规则",
+                "url": "#id-Comments%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B3%A8%E9%87%8A%E8%A7%84%E5%88%99%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Source code structure 源代码结构",
+                "url": "#id-Source%20code%20structure%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Objects and data structures 对象和数据结构",
+                "url": "#id-Objects%20and%20data%20structures%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Tests 测试",
+                "url": "#id-Tests%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B5%8B%E8%AF%95%3C%2Ffont%3E"
+            },
+            {
+                "size": "big",
+                "text": "Code smells",
+                "url": "#id-Code%20smells"
+            }
+        ],
+        "tags": [
+            "软件开发"
+        ]
+    },
+    {
         "title": " 名课初体验之CS 10: The Beauty and Joy of Computing",
         "id": 8511,
         "time": 1648298236481,

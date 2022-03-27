@@ -1,0 +1,127 @@
+<h1><sup class="fake-head" id="id-clean%20code"></sup><a class="header-link" href="#id-clean%20code"><p>clean code</p></a></h1>
+<p>如果代码可以被团队中的每个人很容易理解，那么它就是干净的。干净的代码可以由原始作者以外的开发人员读取和增强。可理解性带来了可读性、可变性、可扩展性和可维护性。</p>
+<hr>
+<h2><sup class="fake-head" id="id-General%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E4%B8%80%E8%88%AC%E8%A7%84%E5%88%99%3C%2Ffont%3E"></sup><a class="header-link" href="#id-General%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E4%B8%80%E8%88%AC%E8%A7%84%E5%88%99%3C%2Ffont%3E"><p>General rules <font class="cyxy-trs-target">一般规则</font></p></a></h2>
+<ol>
+<li>Follow standard conventions. <font class="cyxy-trs-target" contenteditable="true">遵循标准惯例</font></li>
+<li>Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.</li>
+<li>保持简单愚蠢，越简单越好，尽可能地减少复杂性。</li>
+<li>Boy scout rule. Leave the campground cleaner than you found it.</li>
+<li>童子军规则，让露营地比你找到的地方更干净。</li>
+<li>Always find root cause. Always look for the root cause of a problem.</li>
+<li>总是找到问题的根源，总是找到问题的根源。</li>
+</ol>
+<h2><sup class="fake-head" id="id-Design%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E8%AE%BE%E8%AE%A1%E8%A7%84%E5%88%99%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Design%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E8%AE%BE%E8%AE%A1%E8%A7%84%E5%88%99%3C%2Ffont%3E"><p>Design rules <font class="cyxy-trs-target">设计规则</font></p></a></h2>
+<ol>
+<li>Keep configurable data at high levels.</li>
+<li>将可配置数据保持在较高级别。</li>
+<li>Prefer polymorphism to if/else or switch/case.</li>
+<li>倾向于使用多态而不是 if/else 或 switch/case。</li>
+<li>Separate multi-threading code. <font class="cyxy-trs-target" contenteditable="true">单独的多线程代码</font></li>
+<li>Prevent over-configurability. <font class="cyxy-trs-target" contenteditable="true">防止过度配置</font></li>
+<li>Use dependency injection. <font class="cyxy-trs-target" contenteditable="true">使用依赖注入</font></li>
+<li>Follow Law of Demeter. A class should know only its direct dependencies.</li>
+<li>遵循得墨忒尔定律。一个类应该只知道它的直接依赖关系。</li>
+</ol>
+<h2><sup class="fake-head" id="id-understandability-tips"></sup><a class="header-link" href="#id-understandability-tips"><p>understandability-tips</p></a></h2>
+<ol>
+<li>Be consistent. If you do something a certain way, do all similar things in the same way.</li>
+<li>如果你以某种方式做某件事，那么所有相似的事情都以同样的方式做。</li>
+<li>Use explanatory variables. <font class="cyxy-trs-target" contenteditable="true">使用解释性变量</font></li>
+<li>Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.</li>
+<li>封装边界条件。边界条件很难跟踪。把它们的处理放在一个地方。</li>
+<li>Prefer dedicated value objects to primitive type.</li>
+<li>与基元类型相比，更喜欢使用专用值对象。</li>
+<li>Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.</li>
+<li>避免逻辑依赖性。不要编写依赖于同一类中的其他东西而正确工作的方法。</li>
+<li>Avoid negative conditionals. <font class="cyxy-trs-target" contenteditable="true">避免使用否定条件句</font></li>
+</ol>
+<h2><sup class="fake-head" id="id-Names%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%90%8D%E5%AD%97%E8%A7%84%E5%88%99%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Names%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%90%8D%E5%AD%97%E8%A7%84%E5%88%99%3C%2Ffont%3E"><p>Names rules <font class="cyxy-trs-target">名字规则</font></p></a></h2>
+<ol>
+<li>Choose descriptive and unambiguous names. <font class="cyxy-trs-target" contenteditable="true">选择描述性和明确的名称</font></li>
+<li>Make meaningful distinction. <font class="cyxy-trs-target" contenteditable="true">做出有意义的区分</font></li>
+<li>Use pronounceable names. <font class="cyxy-trs-target" contenteditable="true">使用可发音的名字</font></li>
+<li>Use searchable names. <font class="cyxy-trs-target" contenteditable="true">使用可搜索的名字</font></li>
+<li>Replace magic numbers with named constants.</li>
+<li>用命名常量替换魔术数字。</li>
+<li>Avoid encodings. Don't append prefixes or type information.</li>
+<li>避免编码。不要附加前缀或输入信息。</li>
+</ol>
+<h2><sup class="fake-head" id="id-Functions%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Functions%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99%3C%2Ffont%3E"><p>Functions rules <font class="cyxy-trs-target">函数规则</font></p></a></h2>
+<ol>
+<li>Small. <font class="cyxy-trs-target">规模小</font></li>
+<li>Do one thing. <font class="cyxy-trs-target">做一件事</font></li>
+<li>Use descriptive names. <font class="cyxy-trs-target" contenteditable="true">使用描述性的名称</font></li>
+<li>Prefer fewer arguments. <font class="cyxy-trs-target" contenteditable="true">更喜欢少争论</font></li>
+<li>Have no side effects. <font class="cyxy-trs-target" contenteditable="true">没有副作用</font></li>
+<li>Don't use flag arguments. Split method into several independent methods that can be called from the client without the flag.</li>
+<li>不要使用标志参数。将方法拆分为几个独立的方法，这些方法可以在没有标志的情况下从客户机调用。</li>
+</ol>
+<h2><sup class="fake-head" id="id-Comments%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B3%A8%E9%87%8A%E8%A7%84%E5%88%99%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Comments%20rules%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B3%A8%E9%87%8A%E8%A7%84%E5%88%99%3C%2Ffont%3E"><p>Comments rules <font class="cyxy-trs-target">注释规则</font></p></a></h2>
+<ol>
+<li>Always try to explain yourself in code.</li>
+<li>总是试图用代码来解释自己。</li>
+<li>Don't be redundant. <font class="cyxy-trs-target">不要多余</font></li>
+<li>Don't add obvious noise. <font class="cyxy-trs-target" contenteditable="true">不要添加明显的噪音</font></li>
+<li>Don't use closing brace comments.</li>
+<li>不要使用结束大括号注释。</li>
+<li>Don't comment out code. Just remove.</li>
+<li>不要注释代码，只是删除。</li>
+<li>Use as explanation of intent. <font class="cyxy-trs-target" contenteditable="true">用来解释意图</font></li>
+<li>Use as clarification of code. <font class="cyxy-trs-target" contenteditable="true">用作代码的澄清</font></li>
+<li>Use as warning of consequences. <font class="cyxy-trs-target" contenteditable="true">用作后果的警告</font></li>
+</ol>
+<h2><sup class="fake-head" id="id-Source%20code%20structure%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Source%20code%20structure%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%3C%2Ffont%3E"><p>Source code structure <font class="cyxy-trs-target" contenteditable="true">源代码结构</font></p></a></h2>
+<ol>
+<li>Separate concepts vertically. <font class="cyxy-trs-target" contenteditable="true">纵向分离概念</font></li>
+<li>Related code should appear vertically dense.</li>
+<li>相关代码应该垂直密集显示。</li>
+<li>Declare variables close to their usage.</li>
+<li>声明变量接近它们的用法。</li>
+<li>Dependent functions should be close. <font class="cyxy-trs-target" contenteditable="true">相关函数应该是关闭的</font></li>
+<li>Similar functions should be close. <font class="cyxy-trs-target" contenteditable="true">类似的功能应该是关闭的</font></li>
+<li>Place functions in the downward direction.</li>
+<li>将函数置于向下的方向。</li>
+<li>Keep lines short. <font class="cyxy-trs-target" contenteditable="true">保持队伍简短</font></li>
+<li>Don't use horizontal alignment. <font class="cyxy-trs-target" contenteditable="true">不要使用水平对齐</font></li>
+<li>Use white space to associate related things and disassociate weakly related.</li>
+<li>使用空格将相关事物联系起来，并切断弱相关事物的联系。</li>
+<li>Don't break indentation. <font class="cyxy-trs-target" contenteditable="true">不要打破压痕</font></li>
+</ol>
+<h2><sup class="fake-head" id="id-Objects%20and%20data%20structures%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Objects%20and%20data%20structures%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%3C%2Ffont%3E"><p>Objects and data structures <font class="cyxy-trs-target" contenteditable="true">对象和数据结构</font></p></a></h2>
+<ol>
+<li>Hide internal structure. <font class="cyxy-trs-target" contenteditable="true">隐藏内部结构</font></li>
+<li>Prefer data structures. <font class="cyxy-trs-target" contenteditable="true">更喜欢数据结构</font></li>
+<li>Avoid hybrids structures (half object and half data).</li>
+<li>避免混合结构 (一半对象，一半数据)。</li>
+<li>Should be small. <font class="cyxy-trs-target">应该很小</font></li>
+<li>Do one thing. <font class="cyxy-trs-target">做一件事</font></li>
+<li>Small number of instance variables. <font class="cyxy-trs-target" contenteditable="true">少量的实例变量</font></li>
+<li>Base class should know nothing about their derivatives.</li>
+<li>基础阶级应该对他们的衍生产品一无所知。</li>
+<li>Better to have many functions than to pass some code into a function to select a behavior.</li>
+<li>最好有许多函数，而不是将一些代码传递给函数来选择行为。</li>
+<li>Prefer non-static methods to static methods.</li>
+<li>选择非静态方法而不是静态方法。</li>
+</ol>
+<h2><sup class="fake-head" id="id-Tests%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B5%8B%E8%AF%95%3C%2Ffont%3E"></sup><a class="header-link" href="#id-Tests%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E%E6%B5%8B%E8%AF%95%3C%2Ffont%3E"><p>Tests <font class="cyxy-trs-target">测试</font></p></a></h2>
+<ol>
+<li>One assert per test. <font class="cyxy-trs-target" contenteditable="true">每个测试一个断言</font></li>
+<li>Readable. <font class="cyxy-trs-target">可读性</font></li>
+<li>Fast. <font class="cyxy-trs-target">快点</font></li>
+<li>Independent. <font class="cyxy-trs-target">独立</font></li>
+<li>Repeatable. <font class="cyxy-trs-target">可重复性</font></li>
+</ol>
+<h2><sup class="fake-head" id="id-Code%20smells"></sup><a class="header-link" href="#id-Code%20smells"><p>Code smells</p></a></h2>
+<ol>
+<li>Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.</li>
+<li>刚性。软件很难改变。一个小的改变会导致一连串的后续改变。</li>
+<li>Fragility. The software breaks in many places due to a single change.</li>
+<li>软件的脆弱性。由于一个简单的改变，软件在很多地方都会出现故障。</li>
+<li>Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.</li>
+<li>不可移动性。由于涉及风险和高工作量，您不能在其他项目中重用部分代码。</li>
+<li>Needless Complexity. <font class="cyxy-trs-target" contenteditable="true">不必要的复杂性</font></li>
+<li>Needless Repetition. <font class="cyxy-trs-target" contenteditable="true">不必要的重复</font></li>
+<li>Opacity. The code is hard to understand.</li>
+<li>不透明。代码很难理解。</li>
+</ol>
