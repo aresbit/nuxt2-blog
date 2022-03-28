@@ -1,5 +1,88 @@
 [
     {
+        "title": "高阶类型",
+        "id": 9060,
+        "time": 1648491563490,
+        "modifyTime": 1648491563490,
+        "len": 11713,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Let's talk about Kinds, baby",
+                "url": "#id-Let's%20talk%20about%20Kinds%2C%20baby"
+            },
+            {
+                "size": "big",
+                "text": "What is a Kind?",
+                "url": "#id-%5BWhat%20is%20a%20Kind%3F%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKind_(type_theory))"
+            },
+            {
+                "size": "big",
+                "text": "Higher Kinded Types",
+                "url": "#id-Higher%20Kinded%20Types"
+            },
+            {
+                "size": "big",
+                "text": "Higher Order Functions",
+                "url": "#id-Higher%20Order%20Functions"
+            },
+            {
+                "size": "big",
+                "text": "Higher Order Type-Constructors",
+                "url": "#id-Higher%20Order%20Type-Constructors"
+            },
+            {
+                "size": "big",
+                "text": "FlexibleInstances",
+                "url": "#id-%5BFlexibleInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexibleinstances)"
+            },
+            {
+                "size": "big",
+                "text": "FlexibleContexts",
+                "url": "#id-%5BFlexibleContexts%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexiblecontexts)"
+            },
+            {
+                "size": "big",
+                "text": "TypeSynonymInstances",
+                "url": "#id-%5BTypeSynonymInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23typesynonyminstances)"
+            },
+            {
+                "size": "big",
+                "text": "MultiParamTypeClasses",
+                "url": "#id-%5BMultiParamTypeClasses%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"
+            },
+            {
+                "size": "big",
+                "text": "FunctionalDependencies",
+                "url": "#id-%5BFunctionalDependencies%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"
+            },
+            {
+                "size": "big",
+                "text": "Not only type classes involve HKTs",
+                "url": "#id-Not%20only%20type%20classes%20involve%20HKTs"
+            },
+            {
+                "size": "big",
+                "text": "More complex HKTs",
+                "url": "#id-More%20complex%20HKTs"
+            },
+            {
+                "size": "big",
+                "text": "A note on syntax",
+                "url": "#id-A%20note%20on%20syntax"
+            },
+            {
+                "size": "big",
+                "text": "What should be available in Rust?",
+                "url": "#id-What%20should%20be%20available%20in%20Rust%3F"
+            }
+        ],
+        "tags": [
+            "rust PL "
+        ]
+    },
+    {
         "title": "clean code ",
         "id": 2440,
         "time": 1648418658965,

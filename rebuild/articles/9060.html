@@ -1,0 +1,240 @@
+<p class="cyxy-trs-source cyxy-trs-source-ted">Since some seem to be wondering what HKTs are …</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">因为有些人似乎想知道 hkt 是什么..。</p>
+<h1><sup class="fake-head" id="id-Let's%20talk%20about%20Kinds%2C%20baby"></sup><a class="header-link" href="#id-Let's%20talk%20about%20Kinds%2C%20baby"><p class="cyxy-trs-source cyxy-trs-source-ted">Let's talk about Kinds, baby</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">让我们谈谈种类，宝贝</p></a></h1>
+<p class="cyxy-trs-source cyxy-trs-source-ted">For the uninitiated, I'll try to do a brief overview of what kinds, and <strong>HKTs (Higher Kinded Types)</strong> are, and a few choices to consider for HKTs in Rust. Hopefully this can shed some light on the topic for some. Understanding this might require some knowledge of <a href="https://www.haskell.org/">haskell</a>, but I'll try to give Rust equivalents where possible.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">对于外行，我将尝试做一个简短的概述，什么类型，和 HKTs (更高的种类) ，以及一些选择，以考虑在生锈的 HKTs。希望这能给一些人带来一些启示。理解这一点可能需要一些 haskell 的知识，但我会尽可能给出锈病的等价物。</p>
+<h2 class="cyxy-trs-source cyxy-trs-source-ted"><sup class="fake-head" id="id-%5BWhat%20is%20a%20Kind%3F%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKind_(type_theory))"></sup><a class="header-link" href="#id-%5BWhat%20is%20a%20Kind%3F%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKind_(type_theory))"></a><p><a class="header-link" href="#id-%5BWhat%20is%20a%20Kind%3F%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FKind_(type_theory))"></a><a href="https://en.wikipedia.org/wiki/Kind_(type_theory)">What is a Kind?</a></p></h2><h2 class="cyxy-trs-source cyxy-trs-target" contenteditable="true">什么是善良？</h2>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Kinds can most succinctly be described as <strong>"types of types"</strong>. In this sense, they are higher-order-types.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">种类可以最简洁地描述为“类型的类型”。在这个意义上，它们是高阶类型。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted"><em>NOTE: To get the kind of something in <code>ghci</code>, you can use <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html#ghci-cmd-:kind"><code>:k</code></a>, where <code>&lt;type&gt;</code> is the one you want kind information about.</em></p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">注意: 要在 ghci 中获得某种类型的信息，您可以使用: k，其中 &lt; type &gt; 是您需要的类型信息。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Let's take a look at the most basic kind: <code>*</code>, pronounced: <strong>star</strong> - which is the kind of all <strong>data types</strong>, and can also be called "proper types", or the concrete kind. Just as we have constructors for data types, such as:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">让我们来看看最基本的类型: * ，declared: star ——这是所有数据类型的类型，也可以称为“适当类型”，或具体类型。正如我们有数据类型的构造函数一样，例如:</p>
+<pre><small></small><div></div><code class="hljs language-rust">data Nat = Zero | Succ Nat
+
+-- <span class="hljs-keyword">where</span>
+
+λ&gt; :t Zero
+Zero :: Nat
+λ&gt; :t Succ
+Succ :: Nat <span class="hljs-punctuation">-&gt;</span> Nat
+λ&gt; :k Nat
+Nat :: *
+<span class="hljs-comment">// in Rust - this is a truly inefficient way to implement Nat, but simple to grasp.</span>
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Nat</span> { Zero, <span class="hljs-title function_ invoke__">Succ</span>(<span class="hljs-type">Box</span>&lt;Nat&gt;) }
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">, we also have <a href="https://en.wikipedia.org/wiki/Type_constructor"><strong>type constructors</strong></a> that take types as arguments and produce another type as a result.
+The star kind can thus be seen as a type constructor taking zero arguments, i.e: a <strong>nullary</strong> type constructor.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">，我们也有类型构造函数<br>以类型作为参数并生成另一个类型。<br>因此，这种类型的恒星可以被看作是一个没有任何参数的型别构造器，也就是说，一个没有型别构造器的型别构造器。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Next, if we add <strong>generics</strong> to the mix, we get other results:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">接下来，如果我们添加泛型，我们会得到其他结果:</p>
+<pre><small></small><div></div><code class="hljs language-awk">data Maybe a = Nothing | Just a
+
+λ&gt; :k Maybe
+Maybe :: * -&gt; *
+<span class="hljs-regexp">//</span> See: https:<span class="hljs-regexp">//</span>doc.rust-lang.org<span class="hljs-regexp">/std/</span>option/enum.Option.html
+pub enum Option&lt;T&gt; {
+    None,
+    Some(T),
+}
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">As we see, a <a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Maybe"><code>Maybe</code></a>, is a <strong>unary</strong> type constructor from a type (of an element in the <code>Maybe</code>, in this case) to a specific <code>Maybe</code> type, such as <code>Maybe Nat</code>, which has kind star, as seen in: <code>λ&gt; :k Maybe Nat :: *</code></p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">正如我们所看到的，a 也许<br>，是一元型别构造器，从一个类型(在本例中是 Maybe 中的一个元素)到一个特定的 Maybe 类型，比如 Maybe Nat，它有 kind star，见: λ &gt; : k Maybe Nat: *</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">If we add another generic parameter, we get a <strong>binary</strong> type constructor. Such an example is the kind of the function type, or the kind of <a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Either"><code>Either</code></a> (<a href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a> in Rust), or a <a href="http://hackage.haskell.org/package/containers-0.5.8.1/docs/Data-Map-Lazy.html"><code>Map</code></a> (similar to <a href="https://doc.rust-lang.org/std/collections/struct.BTreeMap.html"><code>BTreeMap</code></a> in Rust):</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">如果我们添加另一个泛型参数，我们会得到一个二进制型别构造器。这样的例子是函数类型的一种，或者是非此即彼的一种<br>(<br>结果<br>在锈) ，或一个<br>地图<br>(类似于<br>图片来源: BTreeMap<br>在《锈》中) :</p>
+<pre><small></small><div></div><code class="hljs language-coq">λ&gt; :k (-&gt;)
+(-&gt;) :: * -&gt; * -&gt; *
+
+data Either a b = <span class="hljs-keyword">Left</span> a | <span class="hljs-type">Right</span> b
+λ&gt; :k Either
+Either :: * -&gt; * -&gt; *
+
+λ&gt; :k Map
+Map :: * -&gt; * -&gt; *
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted"><em>An aside note:</em> to actually create a <code>Map</code>, the key type must satisfy the <a href="https://doc.rust-lang.org/std/cmp/trait.Ord.html"><code>Ord</code> trait</a> or <a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Ord">type class</a>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">另外需要注意的是: 要实际创建一个 Map，键类型必须满足 Ord<br>特征或类型类。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">In GHC, there are other kinds which are of no interest, but <a href="https://downloads.haskell.org/~ghc/7.8.4/docs/html/users_guide/constraint-kind.html"><code>GHC.Prim.Constraint</code></a> is of special significance.
+This is the kind that you get when you fulfill a <strong>type class</strong>, which correspond to <strong>traits</strong> in Rust.
+For example, for the <a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Eq"><code>Eq</code> type class</a> (<a href="https://doc.rust-lang.org/std/cmp/trait.Eq.html">Rust equivalent to <code>Eq</code></a>):</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">在 GHC 中，除了 GHC.prim. 约束外，还有其他类型的限制<br>具有特殊的意义。<br>当你完成一个类型类别时，你就会得到这种类型，它对应于 Rust 中的特征。<br>例如，对于<br>Eq<br>类型类别(锈相当于<br>Eq<br>):</p>
+<pre><small></small><div></div><code class="hljs language-xl">λ&gt; :i Eq
+class Eq a <span class="hljs-keyword">where</span>
+    (==) :: <span class="hljs-function"><span class="hljs-title">a</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">a</span> -&gt;</span> Bool
+    (/=) :: <span class="hljs-function"><span class="hljs-title">a</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">a</span> -&gt;</span> Bool
+
+λ&gt; :k Eq
+E<span class="hljs-function"><span class="hljs-title">q</span> :: * -&gt;</span> GHC.Prim.Constraint
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">In this sense, in type theory, both type classes and traits are in fact types.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">从这个意义上说，在类型理论中，类型类和特性实际上都是类型。</p>
+<h2><sup class="fake-head" id="id-Higher%20Kinded%20Types"></sup><a class="header-link" href="#id-Higher%20Kinded%20Types"><p class="cyxy-trs-source cyxy-trs-source-ted">Higher Kinded Types</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">更高层次的类型</p></a></h2>
+<p class="cyxy-trs-source cyxy-trs-source-ted">So far, everything I've covered is possible in Rust.
+But wait, there is more - enter <strong>HKTs (Higher Kinded Types)</strong>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">到目前为止，我已经涵盖的一切都可能在锈。但是，等待，有更多-进入 HKTs (更高的种类)。</p>
+<h3><sup class="fake-head" id="id-Higher%20Order%20Functions"></sup><a class="header-link" href="#id-Higher%20Order%20Functions"><p class="cyxy-trs-source cyxy-trs-source-ted">Higher Order Functions</p><p class="cyxy-trs-source cyxy-trs-target">高阶函数</p></a></h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Just as there are functions taking functions as arguments (or returning functions), which are called <strong><a href="https://en.wikipedia.org/wiki/Higher-order_function">HoFs (Higher Order Functions)</a></strong>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">正如有些函数以函数作为参数(或返回函数) ，这些函数被称为 HoFs (高阶函数)。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Some well known HoFs are: <code>map</code>, <code>fold</code>, <code>filter</code>, <code>(.)</code>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">一些著名的 HoFs 是: map，fold，filter，(.)。</p>
+<pre><small></small><div></div><code class="hljs language-rust">twice :: (a <span class="hljs-punctuation">-&gt;</span> a) <span class="hljs-punctuation">-&gt;</span> (a <span class="hljs-punctuation">-&gt;</span> a)
+twice f = f . f
+<span class="hljs-comment">// in Rust:</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">twice</span>&lt;A, F&gt;(function: F) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Box</span>&lt;<span class="hljs-title function_ invoke__">Fn</span>(A) <span class="hljs-punctuation">-&gt;</span> A&gt; 
+    <span class="hljs-keyword">where</span> F: <span class="hljs-symbol">'static</span> + <span class="hljs-title function_ invoke__">Fn</span>(A) <span class="hljs-punctuation">-&gt;</span> A {
+    Box::<span class="hljs-title function_ invoke__">new</span>(<span class="hljs-keyword">move</span> |a| <span class="hljs-title function_ invoke__">function</span>(<span class="hljs-title function_ invoke__">function</span>(a)))
+}
+</code></pre>
+<h3><sup class="fake-head" id="id-Higher%20Order%20Type-Constructors"></sup><a class="header-link" href="#id-Higher%20Order%20Type-Constructors"><p class="cyxy-trs-source cyxy-trs-source-ted">Higher Order Type-Constructors</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">高阶类型构造函数</p></a></h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Just as there are HoFs of regular types, there are HoFs of kinds, for example: <code>(k1 -&gt; k2) -&gt; k3</code></p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">正如存在常规类型的 HoFs 一样，也存在各种类型的 HoFs，例如: (k1-&gt; k2)-&gt; k3</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Examples of type classes with that form are:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">具有这种形式的类型类的例子如下:</p>
+<ul>
+<li><a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Functor" class="cyxy-trs-source">Functors<font class="cyxy-trs-target"> 函子</font></a>:</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">Functor</span> f <span class="hljs-keyword">where</span></span>
+    fmap :: (a -&gt; b) -&gt; f a -&gt; f b
+
+<span class="hljs-comment">-- fully expanded:</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">Functor</span> (<span class="hljs-title">f</span> :: * -&gt; *) <span class="hljs-keyword">where</span></span>
+    fmap :: (a -&gt; b) -&gt; f a -&gt; f b
+
+λ&gt; :k <span class="hljs-type">Functor</span>
+<span class="hljs-type">Functor</span> :: (* -&gt; *) -&gt; <span class="hljs-type">GHC</span>.<span class="hljs-type">Prim</span>.<span class="hljs-type">Constraint</span>
+
+<span class="hljs-comment">-- An example instance of Functor for Maybe:</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> <span class="hljs-type">Maybe</span> <span class="hljs-keyword">where</span></span>
+    fmap f <span class="hljs-type">Nothing</span>  = <span class="hljs-type">Nothing</span>
+    fmap f (<span class="hljs-type">Just</span> a) = <span class="hljs-type">Just</span> (f a)
+</code></pre>
+<ul>
+<li><a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Applicative" class="cyxy-trs-source">Applicatives<font class="cyxy-trs-target"> 应用</font></a>:</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-smali">class Functor f =&gt; Applicative f where
+    pure<span class="hljs-keyword"> :</span>: a -&gt; f a
+    (&lt;*&gt;)<span class="hljs-keyword"> :</span>: f (a -&gt; b) -&gt; f a -&gt; f b
+
+λ&gt;<span class="hljs-keyword"> :k</span> Applicative
+Applicative<span class="hljs-keyword"> :</span>: (* -&gt; *) -&gt; GHC.Prim.Constraint
+
+-- An example<span class="hljs-built_in"> instance </span>of Applicative for Maybe:<span class="hljs-built_in">
+instance </span>Applicative Maybe where
+    pure x = Just x
+    Nothing  &lt;*&gt; m = Nothing
+    (Just f) &lt;*&gt; m = fmap f m
+</code></pre>
+<ul>
+<li><a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html#t:Monad" class="cyxy-trs-source">Monads</a>:</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-smali">class Applicative m =&gt; Monad m where
+    (&gt;&gt;=)<span class="hljs-keyword"> :</span>: m a -&gt; (a -&gt; m b) -&gt; m b
+
+λ&gt;<span class="hljs-keyword"> :k</span> Monad
+Monad<span class="hljs-keyword"> :</span>: (* -&gt; *) -&gt; GHC.Prim.Constraint
+
+-- An example<span class="hljs-built_in"> instance </span>of Monad for Maybe:<span class="hljs-built_in">
+instance </span> Monad Maybe  where
+    (Just x) &gt;&gt;= k = k x
+    Nothing  &gt;&gt;= _ = Nothing
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">These type classes allow us to reason about data structures as such (assuming they are instances of the type class). Here, <code>f</code> and <code>m</code> are as expected generic data structures, or unary type constructors of kind <code>* -&gt; *</code>, allowing us to be generic over <code>f t</code>, where <code>t</code> is a type, for example: <code>f a</code>, <code>f b</code>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">这些类型类允许我们对数据结构本身进行推理(假设它们是类型类的实例)。这里，f 和 m 是预期的泛型数据结构，或者类型为 *-&gt; * 的一元类型构造函数，允许我们在 f t 上使用泛型，其中 t 是一种类型，例如: f a，f b。</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">More about monads: http://dev.stephendiehl.com/hask/#monads</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">更多关于单子的信息:  http://dev.stephendiehl.com/hask/#monads</p>
+<h3 class="cyxy-trs-source"><sup class="fake-head" id="id-%5BFlexibleInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexibleinstances)"></sup><a class="header-link" href="#id-%5BFlexibleInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexibleinstances)"></a><p><a class="header-link" href="#id-%5BFlexibleInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexibleinstances)"></a><a href="http://dev.stephendiehl.com/hask/#flexibleinstances">FlexibleInstances</a></p></h3>
+<h3 class="cyxy-trs-source cyxy-trs-source-ted"><sup class="fake-head" id="id-%5BFlexibleContexts%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexiblecontexts)"></sup><a class="header-link" href="#id-%5BFlexibleContexts%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexiblecontexts)"></a><p><a class="header-link" href="#id-%5BFlexibleContexts%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23flexiblecontexts)"></a><a href="http://dev.stephendiehl.com/hask/#flexiblecontexts">FlexibleContexts</a></p></h3><h3 class="cyxy-trs-source cyxy-trs-target" contenteditable="true">Flexibleecontext</h3>
+<h3 class="cyxy-trs-source cyxy-trs-source-ted"><sup class="fake-head" id="id-%5BTypeSynonymInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23typesynonyminstances)"></sup><a class="header-link" href="#id-%5BTypeSynonymInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23typesynonyminstances)"></a><p><a class="header-link" href="#id-%5BTypeSynonymInstances%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23typesynonyminstances)"></a><a href="http://dev.stephendiehl.com/hask/#typesynonyminstances">TypeSynonymInstances</a></p></h3><h3 class="cyxy-trs-source cyxy-trs-target" contenteditable="true">Typesynonymin肿瘤</h3>
+<h3 class="cyxy-trs-source cyxy-trs-source-ted"><sup class="fake-head" id="id-%5BMultiParamTypeClasses%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></sup><a class="header-link" href="#id-%5BMultiParamTypeClasses%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></a><p><a class="header-link" href="#id-%5BMultiParamTypeClasses%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></a><a href="http://dev.stephendiehl.com/hask/#multiparam-typeclasses">MultiParamTypeClasses</a></p></h3><h3 class="cyxy-trs-source cyxy-trs-target" contenteditable="true">多种类型的混合物</h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Consider the case where we want a polymorphic way to convert between data structures, but preserve the elements. How do we encode this?</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">假设我们需要一种多态方式来在数据结构之间进行转换，但是保留元素。我们如何编码这个？</p>
+<pre><small></small><div></div><code class="hljs language-haskell"><span class="hljs-comment">-- To enable the language feature.</span>
+<span class="hljs-meta">{-# LANGUAGE MultiParamTypeClasses #-}</span>
+
+<span class="hljs-comment">-- Needed for the Either () instance below:</span>
+<span class="hljs-meta">{-# LANGUAGE FlexibleInstances #-}</span>
+
+<span class="hljs-comment">-- Needed to be explicit about f, g :: * -&gt; *</span>
+<span class="hljs-meta">{-# LANGUAGE KindSignatures #-}</span>
+
+<span class="hljs-keyword">import</span> Data.Monoid ((&lt;&gt;)) <span class="hljs-comment">-- for &lt;&gt; operator.</span>
+
+<span class="hljs-comment">-- Converting between data structures while preserving elements.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">StructureConversion</span> (<span class="hljs-title">f</span> :: * -&gt; *) (<span class="hljs-title">g</span> :: * -&gt; *) <span class="hljs-keyword">where</span></span>
+    convert :: f a -&gt; g a
+
+<span class="hljs-comment">-- Maybe and Either () are isomorphic.</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">StructureConversion</span> <span class="hljs-type">Maybe</span> (<span class="hljs-type">Either</span> ()) <span class="hljs-keyword">where</span></span>
+    convert <span class="hljs-type">Nothing</span>  = <span class="hljs-type">Left</span> ()
+    convert (<span class="hljs-type">Just</span> a) = <span class="hljs-type">Right</span> a
+
+<span class="hljs-comment">-- A binary tree:</span>
+<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-type">BTree</span> a = <span class="hljs-type">L</span> | <span class="hljs-type">N</span> a (<span class="hljs-type">BTree</span> <span class="hljs-title">a</span>) (<span class="hljs-type">BTree</span> <span class="hljs-title">a</span>)</span>
+    <span class="hljs-keyword">deriving</span> <span class="hljs-type">Show</span>
+
+<span class="hljs-comment">-- Converting between BTree:s and Lists.</span>
+<span class="hljs-comment">-- <span class="hljs-doctag">NOTE:</span> this is not structure preserving.</span>
+<span class="hljs-comment">-- i.e: converting to list and then back could never guarantee the exact form back.</span>
+<span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">StructureConversion</span> <span class="hljs-type">BTree</span> [] <span class="hljs-keyword">where</span></span>
+    convert <span class="hljs-type">L</span>         = []
+    convert (<span class="hljs-type">N</span> e l r) = e : convert l &lt;&gt; convert r
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Using the definitions:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">使用定义:</p>
+<pre><small></small><div></div><code class="hljs language-excel">λ&gt; <span class="hljs-built_in">convert</span> (Just <span class="hljs-number">42</span>) <span class="hljs-symbol">:</span><span class="hljs-symbol">:</span> Either () <span class="hljs-built_in">Int</span>
+<span class="hljs-built_in">Right</span> <span class="hljs-number">42</span>
+
+λ&gt; let tree = <span class="hljs-built_in">N</span> <span class="hljs-number">1</span> (<span class="hljs-built_in">N</span> <span class="hljs-number">2</span> L L) (<span class="hljs-built_in">N</span> <span class="hljs-number">3</span> (<span class="hljs-built_in">N</span> <span class="hljs-number">4</span> L L) L) <span class="hljs-symbol">:</span><span class="hljs-symbol">:</span> BTree <span class="hljs-built_in">Int</span>
+λ&gt; <span class="hljs-built_in">convert</span> tree <span class="hljs-symbol">:</span><span class="hljs-symbol">:</span> [<span class="hljs-built_in">Int</span>]
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+</code></pre>
+<h3 class="cyxy-trs-source cyxy-trs-source-ted"><sup class="fake-head" id="id-%5BFunctionalDependencies%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></sup><a class="header-link" href="#id-%5BFunctionalDependencies%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></a><p><a class="header-link" href="#id-%5BFunctionalDependencies%5D(http%3A%2F%2Fdev.stephendiehl.com%2Fhask%2F%23multiparam-typeclasses)"></a><a href="http://dev.stephendiehl.com/hask/#multiparam-typeclasses">FunctionalDependencies</a></p></h3><h3 class="cyxy-trs-source cyxy-trs-target" contenteditable="true">函数相依性</h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">When dealing with type classes with multiple parameters, a functional dependency between the parameters <code>a -&gt; b</code>, means that <code>a</code> uniquely determines <code>b</code> - which means that <code>a1 ≡ a2 -&gt; b1 ≡ b2</code></p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">当处理具有多个参数的类型类时，参数 a-&gt; b 之间的函数依赖关系意味着 a 唯一地确定 b-，这意味着 a1≡ a2-&gt; b1≡ b2</p>
+<p class="cyxy-trs-source cyxy-trs-source-ted">An example of such a type class is <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-State-Class.html#t:MonadState">MonadState</a>:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">这种类型类的一个例子是 MonadState:</p>
+<pre><small></small><div></div><code class="hljs language-livescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Monad</span> m =&gt; MonadState s m | m -&gt; s where
+    get   :: m s
+    put   :: s -&gt; m ()
+    state :: <span class="hljs-function"><span class="hljs-params">(s -&gt; (a, s))</span> -&gt;</span> m a
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Which has kind:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">哪一个有好处:</p>
+<pre><small></small><div></div><code class="hljs language-delphi">λ&gt; :k MonadState
+MonadState :: * -&gt; <span class="hljs-comment">(* -&gt; *)</span> -&gt; GHC.Prim.Constraint
+</code></pre>
+<h3><sup class="fake-head" id="id-Not%20only%20type%20classes%20involve%20HKTs"></sup><a class="header-link" href="#id-Not%20only%20type%20classes%20involve%20HKTs"><p class="cyxy-trs-source cyxy-trs-source-ted">Not only type classes involve HKTs</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">不只是类别类别涉及香港体育馆</p></a></h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">An example where data types involve HKTs is <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-State-Lazy.html#v:StateT">StateT</a> (the state transformer monad), which looks like:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">数据类型涉及到 hkt 的一个例子是 StateT (状态变压器单子) ，它看起来像:</p>
+<pre><small></small><div></div><code class="hljs language-smali">newtype StateT s m a = StateT { runStateT<span class="hljs-keyword"> :</span>: s -&gt; m (a, s) }
+<span class="hljs-built_in">
+instance </span>Monad m =&gt; MonadState s (StateT s m) where
+    get     = state  $ \s -&gt; (s, s)
+    put   s = state  $<span class="hljs-built_in"> const </span>((), s)
+    state f = StateT $<span class="hljs-built_in"> return </span>. f
+<span class="hljs-built_in">
+instance </span>Monad m =&gt; Monad        (StateT s m) where
+   <span class="hljs-built_in"> return </span>          = state . (,)
+    (StateT f) &gt;&gt;= g = StateT $ f &gt;=&gt; \(a, s1) -&gt; runStateT (g a) s1
+<span class="hljs-built_in">
+instance </span>Monad m =&gt; Functor      (StateT s m) where
+    fmap = liftM
+<span class="hljs-built_in">
+instance </span>Monad m =&gt; Applicative  (StateT s m) where
+    pure  =<span class="hljs-built_in"> return
+</span>    (&lt;*&gt;) = ap
+</code></pre>
+<p class="cyxy-trs-source cyxy-trs-source-ted">And has the kind:</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">还有那种:</p>
+<pre><small></small><div></div><code class="hljs language-delphi">λ&gt; :k StateT
+StateT :: * -&gt; <span class="hljs-comment">(* -&gt; *)</span> -&gt; * -&gt; *
+</code></pre>
+<h3><sup class="fake-head" id="id-More%20complex%20HKTs"></sup><a class="header-link" href="#id-More%20complex%20HKTs"><p class="cyxy-trs-source cyxy-trs-source-ted">More complex HKTs</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">更复杂的香港电台</p></a></h3>
+<p class="cyxy-trs-source cyxy-trs-source-ted">Here are some examples of more complex HKTs.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">以下是一些更复杂的香港电讯的例子。</p>
+<ul>
+<li class="cyxy-trs-source cyxy-trs-source-ted"><a href="http://hackage.haskell.org/package/transformers-0.5.2.0/docs/Control-Monad-Trans-Class.html#t:MonadTrans">MonadTrans</a>, kind: <code>((* -&gt; *) -&gt; * -&gt; *) -&gt; GHC.Prim.Constraint</code></li><li class="cyxy-trs-source cyxy-trs-target" contenteditable="true">MonadTrans，kind: ((*-&gt; *)-&gt; *-&gt; *)-&gt; GHC.Prim. 约束</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">MonadTrans</span> t <span class="hljs-keyword">where</span></span>
+    <span class="hljs-comment">-- | Lift a computation from the argument monad to the constructed monad.</span>
+    lift :: (<span class="hljs-type">Monad</span> m) =&gt; m a -&gt; t m a
+<span class="hljs-class">
+<span class="hljs-keyword">instance</span> <span class="hljs-type">MonadTrans</span> (<span class="hljs-type">StateT</span> <span class="hljs-title">s</span>) <span class="hljs-keyword">where</span></span>
+    lift m = <span class="hljs-type">StateT</span> $ \si -&gt; (, si) &lt;$&gt; m
+</code></pre>
+<ul>
+<li class="cyxy-trs-source cyxy-trs-source-ted"><a href="http://hackage.haskell.org/package/base-4.9.0.0/docs/Control-Category.html#t:Category">Category</a>, kind: <code>(* -&gt; * -&gt; *) -&gt; GHC.Prim.Constraint</code></li><li class="cyxy-trs-source cyxy-trs-target" contenteditable="true">Category，kind: (*-&gt; *-&gt; *)-&gt; GHC.Prim. Constraint</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-bash">class Category <span class="hljs-built_in">cat</span> <span class="hljs-built_in">where</span>
+    <span class="hljs-built_in">id</span> :: <span class="hljs-built_in">cat</span> a a
+    (.) :: <span class="hljs-built_in">cat</span> b c -&gt; <span class="hljs-built_in">cat</span> a b -&gt; <span class="hljs-built_in">cat</span> a c
+</code></pre>
+<ul>
+<li class="cyxy-trs-source cyxy-trs-source-ted"><a href="http://stackoverflow.com/a/28708799/1063961">Bob Atkey's indexed monad</a>, kind: <code>(* -&gt; * -&gt; * -&gt; *) -&gt; GHC.Prim.Constraint</code>, <a href="https://gist.github.com/Centril/a87d72dc753e0cf71133568de53eb935">an implementation</a></li><li class="cyxy-trs-source cyxy-trs-target" contenteditable="true">Bob Atkey 的索引 monad，kind: (*-&gt; *-&gt; *-&gt;)-&gt; GHC.Prim.Constraint，一个实现</li>
+</ul>
+<pre><small></small><div></div><code class="hljs language-livescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">IMonad</span> m where
+    ireturn :: a -&gt; m i i a
+    <span class="hljs-function"><span class="hljs-params">(&gt;&gt;&gt;=)</span> :: <span class="hljs-title">m</span> <span class="hljs-title">i</span> <span class="hljs-title">j</span> <span class="hljs-title">a</span> -&gt;</span> <span class="hljs-function"><span class="hljs-params">(a -&gt; m j k b)</span> -&gt;</span> m i k b
+</code></pre>
+<h2><sup class="fake-head" id="id-A%20note%20on%20syntax"></sup><a class="header-link" href="#id-A%20note%20on%20syntax"><p class="cyxy-trs-source cyxy-trs-source-ted">A note on syntax</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">关于句法的注释</p></a></h2>
+<p class="cyxy-trs-source cyxy-trs-source-ted">In my opinion, one of the really nice things about type classes in haskell is that they are incredibly terse - as opposed to verbose. While the same terseness is not possible in Rust, it should still be an aim to not let things be overly verbose.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">在我看来，haskell 中 type 类的优点之一是它们非常简洁，而不是冗长。同样的简洁是不可能的锈，它仍然应该是一个目标，不让事情过于冗长。</p>
+<h2><sup class="fake-head" id="id-What%20should%20be%20available%20in%20Rust%3F"></sup><a class="header-link" href="#id-What%20should%20be%20available%20in%20Rust%3F"><p class="cyxy-trs-source cyxy-trs-source-ted">What should be available in Rust?</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">在 Rust 中应该提供什么？</p></a></h2>
+<p class="cyxy-trs-source cyxy-trs-source-ted">I believe it is a good idea - as others have put it - to find examples where HKTs are useful in Rust in a mostly zero-cost way. But I can't say I have anything special to contribute here. It might also be good to classify these into the various kinds they have, so that we know the needs of the type system… But it might also be a good idea to start from the kinds and then see if anything useful can be made that have those kinds.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">我相信这是一个好主意——正如其他人所说的那样——找到例子说明 hkt 在 Rust 中以几乎零成本的方式是有用的。但是我不能说我在这里有什么特别的贡献。也许把它们分成不同的类型也是不错的，这样我们就可以知道类型系统的需要... ... 但是从这些类型开始，然后看看是否有任何有用的东西可以制造出这些类型。</p>
+<ul>
+<li class="cyxy-trs-source cyxy-trs-source-ted">Should HKTs be possible in <code>structs</code> - which are not <code>traits</code>, as in the <code>StateT</code> example?</li><li class="cyxy-trs-source cyxy-trs-target" contenteditable="true">HKTs 在结构中是否可能?-结构不是 traits，就像 StateT 的例子那样？</li>
+<li class="cyxy-trs-source cyxy-trs-source-ted">Should <code>MultiParamTypeClasses</code> (MPTC) and <code>FunctionalDependencies</code> be possible?</li><li class="cyxy-trs-source cyxy-trs-target" contenteditable="true">多种类型的泛函类协定(MPTC)和函数相关性是否可行？</li>
+</ul>
+<p class="cyxy-trs-source cyxy-trs-source-ted">MPTCs means that we can't really talk about a <code>Self</code> anymore, since they are rather relations between two or more type constructors. Having MPTCs would therefore probably mean that something different than <code>trait</code> is needed. Here we see that <code>traits</code> and <code>type classes</code> diverge in semantics as traits give you trait objects. The keyword <code>trait</code> could possibly be reused, but in this case, I find it difficult to see how it would be possible to omit the type constructors <code>f, g</code> in <code>class StructureConversion f g</code> - especially not in the case of <code>FunctionalDependencies</code>.</p><p class="cyxy-trs-source cyxy-trs-target" contenteditable="true">MPTCs 意味着我们不能再谈论 Self，因为它们是两个或多个类型构造函数之间的关系。因此，拥有 mptc 可能意味着需要一些与特征不同的东西。在这里，我们可以看到 traits 和 type 类在语义上的差异，因为 traits 给了你 trait 对象。关键字 trait 可能会被重用，但是在这种情况下，我发现很难看到在类 StructureConversion f g 中忽略类型构造函数 f，g 的可能性，特别是在 FunctionalDependencies 的情况下。</p>
