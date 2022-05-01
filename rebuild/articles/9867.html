@@ -1,0 +1,354 @@
+<p><a href="https://sicp-s1.mit.edu/spring22">6.0001+2 <font class="cyxy-trs-target">6.0001 + 2</font></a><label class="dropbtn cs_top_menu_item cyxy-trs-source" for="cs_menu_6e2368a1f104e0caa352840fd132e813">About 6.0001+2 <font class="cyxy-trs-target" contenteditable="true">大约6.0001 + 2</font>▼</label> <input checked="false" class="dropdown-checkbox" id="cs_menu_6e2368a1f104e0caa352840fd132e813" type="checkbox"><a href="https://sicp-s1.mit.edu/spring22/information">Course Info <font class="cyxy-trs-target">课程资料</font></a> <a href="https://sicp-s1.mit.edu/spring22/styleguide">Style Guide <font class="cyxy-trs-target">风格指南</font></a><label class="dropbtn cs_top_menu_item cyxy-trs-source" for="cs_menu_850bcd04f6ca13f25a2a61b0c839a371"> Help <font class="cyxy-trs-target">救命</font>▼</label> <input checked="false" class="dropdown-checkbox" id="cs_menu_850bcd04f6ca13f25a2a61b0c839a371" type="checkbox"><a href="https://sicp-s1.mit.edu/spring22/queue">Help Queue <font class="cyxy-trs-target">帮助队列</font></a> <a href="https://sicp-s1.mit.edu/spring22/additional_resources">Programming Resources <font class="cyxy-trs-target">编程资源</font></a> <a href="http://bit.ly/mitnavigatingresources">General MIT Help <font class="cyxy-trs-target">一般麻省理工学院帮助</font></a> <a href="https://piazza.com/class/ky3492om7ke5xu">Forum 6.0002 <font class="cyxy-trs-target">论坛 6.0002</font></a> <a href="https://lms.mitx.mit.edu/learn/course/course-v1:MITx+6.0002r_15+2022_Spring/home">MITx 6.0002 (optional finger exercises)</a><a href="https://lms.mitx.mit.edu/learn/course/course-v1:MITx+6.0002r_15+2022_Spring/home">MITx 6.0002 (可选择的手指练习)</a><a href="https://sicp-s1.mit.edu/spring22/styleguide?loginaction=login">Log In <font class="cyxy-trs-target">登录</font></a><a href="javascript:void(0);">☰</a><a href="https://sicp-s1.mit.edu/spring22">Home</a> / <a href="https://sicp-s1.mit.edu/spring22/styleguide">Style Guide</a> 主页 / 时尚指南</p>
+<p></p><main class="cs_body" id="cs_body"><p></p>
+<p></p><center><p></p>
+<h1><sup class="fake-head" id="id-Style%20Guide"></sup><a class="header-link" href="#id-Style%20Guide"><p>Style Guide</p></a></h1>
+<h1><sup class="fake-head" id="id-%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97"></sup><a class="header-link" href="#id-%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97"><p>风格指南</p></a></h1>
+<p></p></center><p></p>
+<p>**</p>
+<p></p><center class="cyxy-trs-source">You are not logged in. <font class="cyxy-trs-target" contenteditable="true">你没有登录</font></center><p></p>
+<p>**<br>
+If you are a current student, please <font class="cyxy-trs-target" contenteditable="true">如果你是现在的学生，请</font><a href="https://sicp-s1.mit.edu/spring22/styleguide?loginaction=login">Log In <font class="cyxy-trs-target">登录</font></a> for full access to the web site. <font class="cyxy-trs-target" contenteditable="true">网站的完全访问权限</font><br>
+Note that this link will take you to an external site ( <font class="cyxy-trs-target" contenteditable="true">请注意，这个链接将把您带到一个外部站点(</font><tt>https://shimmer.mit.edu</tt>) to authenticate, and then you will be redirected back to this page. <font class="cyxy-trs-target" contenteditable="true">)进行验证，然后您将被重定向回到这个页面</font></p>
+<h2><sup class="fake-head" id="id-Table%20of%20Contents%3A"></sup><a class="header-link" href="#id-Table%20of%20Contents%3A"><p>Table of Contents:</p></a></h2>
+<h2><sup class="fake-head" id="id-%E7%9B%AE%E5%BD%95%3A"></sup><a class="header-link" href="#id-%E7%9B%AE%E5%BD%95%3A"><p>目录:</p></a></h2>
+<ol>
+<li><a href="#catsoop_section_1">Integers and floats <font class="cyxy-trs-target">整数和浮点数</font></a></li>
+<li><a href="#catsoop_section_2">for vs. while loops <font class="cyxy-trs-target">For vs. while 循环</font></a></li>
+<li><a href="#catsoop_section_3">Checking boolean conditions with if/else</a><pangu> </pangu><a href="#catsoop_section_3">使用 if/else 检查布尔条件</a></li>
+<li><a href="#catsoop_section_4">Code Documentation <font class="cyxy-trs-target">代码文档</font></a></li>
+<li><a href="#catsoop_section_5">Changing collections while iterating over them</a><pangu> </pangu><a href="#catsoop_section_5">在对集合进行迭代时更改它们</a></li>
+<li><a href="#catsoop_section_6">Directly accessing instance variables <font class="cyxy-trs-target">直接访问实例变量</font></a></li>
+<li><a href="#catsoop_section_7">Calling a superclass constructor from a subclass</a><pangu> </pangu><a href="#catsoop_section_7">从子类调用超类构造函数</a></li>
+<li><a href="#catsoop_section_8">Calling class methods <font class="cyxy-trs-target">调用类方法</font></a></li>
+<li><a href="#catsoop_section_9">Pitfalls of storing custom objects in data structures</a><pangu> </pangu><a href="#catsoop_section_9">在数据结构中存储定制对象的缺陷</a></li>
+<li><a href="#catsoop_section_10">Which data structure should I use?</a><pangu> </pangu><a href="#catsoop_section_10">我应该使用哪种数据结构？</a></li>
+</ol>
+<p><a name="catsoop_section_1"></a></p>
+<p><a class="anchor" name="catsoop_section_1"></a><a class="anchor" name="_integers_and_floats"></a></p>
+<h2><sup class="fake-head" id="id-1)%20Integers%20and%20Floats"></sup><a class="header-link" href="#id-1)%20Integers%20and%20Floats"><p>1) Integers and Floats</p></a></h2>
+<h2><sup class="fake-head" id="id-1)%E6%95%B4%E6%95%B0%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0"></sup><a class="header-link" href="#id-1)%E6%95%B4%E6%95%B0%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0"><p>1) 整数和浮点数</p></a></h2>
+<p>Be careful when deciding whether to represent data as integers or floats, and be sure that you consider all possible behaviors in computation.</p>
+<p>在决定是否将数据表示为整数或浮点数时要小心，并确保考虑了计算中的所有可能行为。</p>
+<p>For a detailed explanation of how Python represents floats, read Section 3.4 (pp. 29-31) of your textbook. In short, floats are represented as factors of powers of two, and many decimal numbers cannot be exactly represented in this manner. The most common problem you'll find is trying to check for equality with a floating point number that you are changing. Say that you have a while loop that increments a float by 0.1, and you want this while loop to continue until a control variable equals 0.3. You might find that setting up your loop in the following manner produces an infinite loop:</p>
+<p>有关 Python 如何表示浮动的详细解释，请阅读教科书的第 3.4 节 (第 29-31 页)。简而言之，浮点数表示为 2 的幂因子，而许多十进制数不能以这种方式准确表示。您会发现最常见的问题是尝试使用正在更改的浮点数来检查是否相等。假设你有一个 while 循环，它将浮点数递增 0.1，并且你希望这个 while 循环继续下去，直到控制变量等于 0.3。你可能会发现以下面的方式设置循环会产生一个无限循环:</p>
+<pre><small></small><div></div><code class="hljs language-apache"><span class="hljs-attribute">variable</span> = <span class="hljs-number">0</span>.<span class="hljs-number">0</span> 
+<span class="hljs-attribute">while</span> variable != <span class="hljs-number">0</span>.<span class="hljs-number">3</span>:  
+    <span class="hljs-attribute">variable</span> += <span class="hljs-number">0</span>.<span class="hljs-number">1</span>
+</code></pre>
+<p>That's because <code>0.1+0.1+0.1</code> is not equal to <code>0.3</code>. <code>0.1</code> cannot be precisely represented as a floating point number, so <code>0.1+0.1+0.1 = 0.30000000000000004</code>. When you are trying to take simple counts of elements, always use integers to avoid this type of problem</p>
+<p>那是因为 0.1 + 0.1 + 0.1 不等于 0.3。0.1 不能精确地表示为浮点数，因此 0.1 + 0.1 + 0.1 = 0.3000000000000004。当您尝试对元素进行简单计数时，总是使用整数来避免这种类型的问题</p>
+<p>One big difference between Python 2 and Python 3 is that in Python 3, division is by default float division, meaning that dividing <code>3/2</code> will give you <code>1.5</code>, which returns a float when you divide two integers. If instead you wanted to do integer division, you need to use the integer division operator <code>//</code> (two slashes). This will divide the two numbers and then floor (or round towards negative infinity) the result. So, <code>3//2</code> will give you <code>1</code>, but <code>-3//2</code> will give you <code>-2</code>. Doing integer division with a float as one of the operands will cast the result to a float, so <code>3.0//2</code> will yield <code>1.0</code>.</p>
+<p>Python 2 和 Python 3 之间的一个重大区别是，在 Python 3 中，除法是默认的浮点数除法，这意味着除以 3/2 将得到 1.5，当你除以两个整数时，返回一个浮点数。如果想要做整数除法，则需要使用整数除法运算符 //(两个斜杠)。这将除以这两个数字，然后平移 (或者向负无穷方向) 得到结果。所以，3/2 会给你 1，但是 - 3/2 会给你 - 2。使用 float 作为操作数之一进行整数除法将把结果转换为 float，因此 3.0//2 将得到 1.0。</p>
+<p><a name="catsoop_section_2"></a></p>
+<p><a class="anchor" name="catsoop_section_2"></a><a class="anchor" name="_for_vs_while_loops"></a></p>
+<h2><sup class="fake-head" id="id-2)%20for%20vs.%20while%20Loops"></sup><a class="header-link" href="#id-2)%20for%20vs.%20while%20Loops"><p>2) for vs. while Loops</p></a></h2>
+<p>Choosing the right loop type makes your code more legible and can also help prevent bugs. Everything that can be written with a for loop can be written with a while loop, but while loops can solve some problems that for loops don't address easily. You should usually write for loops when possible.</p>
+<p>选择正确的循环类型可以使代码更易读，也可以帮助防止错误。可以使用 for 循环编写的所有内容都可以使用 while 循环编写，但 while 循环可以解决 for 循环不能轻松解决的一些问题。如果可能的话，通常应该编写循环。</p>
+<p>In general, use for loops when you know the number of iterations you need to do - e.g., 500 trials, one operation per character in a string, or an action on every element in a list. If you can describe the problem you're trying to solve in terms of each or every element in an iterable object, aim for a for loop. Using a for loop when possible will decrease the risk of writing an infinite loop and will generally prevent you from running into errors with incrementing counter variables.</p>
+<p>通常，在知道需要进行的迭代次数时使用 for 循环 —— 例如，500 次试验、字符串中的每个字符进行一次操作，或者对列表中的每个元素进行操作。如果您可以用迭代对象中的每个元素来描述您试图解决的问题，那么就以 for 循环为目标。在可能的情况下使用 for 循环可以降低写入无限循环的风险，并且通常可以防止使用递增的计数器变量来运行错误。</p>
+<p>Example (print 'hello' 500 times):</p>
+<p>例子 (打印 “ hello” 500 次) :</p>
+<pre><small></small><div></div><code class="hljs language-isbl"><span class="hljs-variable">for</span> <span class="hljs-variable">i</span> <span class="hljs-variable"><span class="hljs-keyword">in</span></span> <span class="hljs-function"><span class="hljs-title">range</span>(<span class="hljs-number">500</span>):
+    <span class="hljs-title">print</span>(<span class="hljs-string">'hello'</span>)</span>
+</code></pre>
+<p>Example (add 1 to every element in a list):</p>
+<p>例子 (给列表中的每个元素添加 1) :</p>
+<pre><small></small><div></div><code class="hljs language-stylus">my_list = <span class="hljs-selector-attr">[5, 2, 7, -4, 0]</span>
+<span class="hljs-keyword">for</span> <span class="hljs-selector-tag">i</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(my_list)):
+    my_list<span class="hljs-selector-attr">[i]</span> += <span class="hljs-number">1</span>
+</code></pre>
+<p>If you're instead iterating for a certain condition to be satisfied, you want to use a <em>while</em> loop. While loops are useful when you can define the number of iterations in terms of a boolean variable. If you are waiting for a user to enter an input correctly or are waiting for a randomly generated value to exceed a certain amount, you'll want to use a while loop. Problems that can be described using "<em>until</em>" should use while loops.</p>
+<p>如果为了满足某个条件而进行迭代，则需要使用 while 循环。当您可以根据布尔变量定义迭代次数时，While 循环非常有用。如果您正在等待用户正确地输入输入，或者正在等待随机生成的值超过一定数量，那么您需要使用 while 循环。可以使用 “until” 来描述的问题应该使用 while 循环。</p>
+<p>Example (loop until the user enters a positive number):</p>
+<p>例子 (循环直到用户输入一个正数) :</p>
+<pre><small></small><div></div><code class="hljs language-isbl"><span class="hljs-variable">num</span> = <span class="hljs-function"><span class="hljs-title">float</span>(<span class="hljs-title">input</span>(<span class="hljs-string">'Enter a positive number: '</span>))</span>
+<span class="hljs-variable"><span class="hljs-keyword">while</span></span> <span class="hljs-variable">num</span> &lt;= <span class="hljs-number">0.0</span>:
+    <span class="hljs-variable">num</span> = <span class="hljs-function"><span class="hljs-title">float</span>(<span class="hljs-title">input</span>(<span class="hljs-string">'Enter a POSITIVE number: '</span>))</span>
+</code></pre>
+<p>Example (loop until the randomly generated number is greater than 0.5):</p>
+<p>例子 (循环直到随机生成的数字大于 0.5) :</p>
+<pre><small></small><div></div><code class="hljs language-livecodeserver">import <span class="hljs-built_in">random</span>
+<span class="hljs-built_in">num</span> = <span class="hljs-built_in">random</span>.<span class="hljs-built_in">random</span>()
+<span class="hljs-keyword">while</span> <span class="hljs-built_in">num</span> &lt;= <span class="hljs-number">0.5</span>:
+    <span class="hljs-built_in">num</span> = <span class="hljs-built_in">random</span>.<span class="hljs-built_in">random</span>()
+</code></pre>
+<p>To improve the average-case performance of your code, you can sometimes exit out of loops as soon as you find your answer; you'll find many loops that are used to find True/False answers follow this pattern. For example, say you want to check whether any value in a list is great than 5:</p>
+<p>为了提高代码的平均大小写性能，有时一找到答案就可以退出循环；您会发现许多用于寻找 True/False 答案的循环遵循这个模式。例如，假设你想检查列表中的任何值是否大于 5:</p>
+<pre><small></small><div></div><code class="hljs language-yaml"><span class="hljs-string">my_list</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]
+<span class="hljs-string">greater_than_five</span> <span class="hljs-string">=</span> <span class="hljs-literal">False</span>
+<span class="hljs-attr">for elem in my_list:</span>
+    <span class="hljs-string">if</span> <span class="hljs-string">elem</span> <span class="hljs-string">&gt;</span> <span class="hljs-attr">5:</span>
+        <span class="hljs-string">greater_than_five</span> <span class="hljs-string">=</span> <span class="hljs-literal">True</span>
+        <span class="hljs-string">break</span>
+</code></pre>
+<p><a name="catsoop_section_3"></a></p>
+<p><a class="anchor" name="catsoop_section_3"></a><a class="anchor" name="_checking_boolean_conditions_with_if_else"></a></p>
+<h2><sup class="fake-head" id="id-3)%20Checking%20Boolean%20Conditions%20with%20if%2Felse"></sup><a class="header-link" href="#id-3)%20Checking%20Boolean%20Conditions%20with%20if%2Felse"><p>3) Checking Boolean Conditions with if/else</p></a></h2>
+<h2><sup class="fake-head" id="id-3)%E4%BD%BF%E7%94%A8%20if%2Felse%20%E6%A3%80%E6%9F%A5%E5%B8%83%E5%B0%94%E6%9D%A1%E4%BB%B6"></sup><a class="header-link" href="#id-3)%E4%BD%BF%E7%94%A8%20if%2Felse%20%E6%A3%80%E6%9F%A5%E5%B8%83%E5%B0%94%E6%9D%A1%E4%BB%B6"><p>3) 使用 if/else 检查布尔条件</p></a></h2>
+<p>Often, people have a tendency to be overly verbose. Observe the following example:</p>
+<p>通常，人们倾向于过于冗长。观察下面的例子:</p>
+<pre><small></small><div></div><code class="hljs language-sql">if my_function() <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-literal">True</span>: # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+</code></pre>
+<p>When Python evaluates my_function(), the code is reduced to the following (let’s pretend it returned True):</p>
+<p>当 Python 计算 my _ function () 时，代码缩减为以下内容 (假设它返回了 True) :</p>
+<pre><small></small><div></div><code class="hljs language-sql">if <span class="hljs-literal">True</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-literal">True</span>: # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+</code></pre>
+<p>This seems repetitive, doesn’t it? We know that True is equal to True, and False is not. So, instead of keeping that == True around, we could just have the function call inside the if statement:</p>
+<p>这似乎是重复的，不是吗？我们知道真等于真，假不是。因此，我们可以在 if 语句中使用函数调用，而不是将 = = True 保留在周围:</p>
+<pre><small></small><div></div><code class="hljs language-sql">if my_function(): # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+</code></pre>
+<p>There is an important point to note here. Since my_function() is going to be a boolean, and we’re effectively returning the value of that boolean, there’s no reason not to just return the boolean itself:</p>
+<p>这里有一个重点需要注意。因为我的 _ function () 是一个布尔值，我们实际上返回了布尔值，所以没有理由不返回布尔值本身:</p>
+<pre><small></small><div></div><code class="hljs language-sql"><span class="hljs-keyword">return</span> my_function() # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+</code></pre>
+<p>This is nice and concise, but what if we want to return True if my_function returns False, and False when it returns True? There’s a Python keyword for that! So, imagine our code starts as:</p>
+<p>这很好，也很简洁，但是如果我们想要返回 True，如果我的 _ 函数返回 False，而返回 True 时返回 False 呢？这里有一个 Python 关键词！所以，想象一下我们的代码是这样开始的:</p>
+<pre><small></small><div></div><code class="hljs language-sql">if my_function() <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-literal">True</span>: # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+</code></pre>
+<p>We can use <code>not</code> to write this as:</p>
+<p>我们可以使用 not to write this as:</p>
+<pre><small></small><div></div><code class="hljs language-sql"><span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> my_function() # my_function <span class="hljs-keyword">returns</span> <span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+</code></pre>
+<p><a name="catsoop_section_4"></a></p>
+<p><a class="anchor" name="catsoop_section_4"></a><a class="anchor" name="_code_documentation"></a></p>
+<h2><sup class="fake-head" id="id-4)%20Code%20Documentation"></sup><a class="header-link" href="#id-4)%20Code%20Documentation"><p>4) Code Documentation</p></a></h2>
+<h2><sup class="fake-head" id="id-4)%E4%BB%A3%E7%A0%81%E6%96%87%E6%A1%A3"></sup><a class="header-link" href="#id-4)%E4%BB%A3%E7%A0%81%E6%96%87%E6%A1%A3"><p>4) 代码文档</p></a></h2>
+<p><strong>Docstrings</strong><br>
+When writing new classes and functions, it is important to document your intent by using docstrings. For instance, in pset 4, since there were a lot of new classes to implement, adding a docstring explaining the purpose of each class is a good idea</p>
+<p>在编写新的类和函数时，通过使用 docstring 来记录意图是很重要的。例如，在 pset 4 中，由于需要实现许多新类，因此添加一个 docstring 来解释每个类的用途是一个好主意</p>
+<p>Even something as simple as:</p>
+<p>甚至一些简单的事情:</p>
+<pre><small></small><div></div><code class="hljs language-angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">CiphertextMessage</span>(<span class="hljs-symbol">Message</span>):
+    """
+    <span class="hljs-symbol">Subclass</span> <span class="hljs-symbol">of</span> <span class="hljs-symbol">Message</span> <span class="hljs-symbol">that</span> <span class="hljs-symbol">represents</span> <span class="hljs-symbol">a</span> <span class="hljs-symbol">shifted</span> <span class="hljs-symbol">Message</span>
+    """
+</code></pre>
+<p>Including a docstring means the specification you’ve written can be accessed by those who try to create an instance of your class. For example, if you change your CiphertextMessage class definition to the above, run the file, then type the following at the interpreter:</p>
+<p>包含一个文档字符串意味着那些试图创建类实例的人可以访问您编写的规范。例如，如果您将您的 CiphertextMessage 类定义更改为上面的定义，运行该文件，然后在解释器中键入以下命令:</p>
+<pre><small></small><div></div><code class="hljs language-python-repl"><span class="hljs-meta prompt_">&gt;&gt;&gt;</span> <span class="language-python">CiphertextMessage.__doc__  </span>
+</code></pre>
+<p>You will see your docstring pop up.</p>
+<p>您将看到您的 docstring 弹出。</p>
+<p><strong>Comments</strong><br>
+In addition to docstrings, it is important to indicate what specific parts of a function do. It is expected that you comment your code for non trivial areas. This is helpful in 6.00 because you are able to quickly glance at your code and remember why/what you were doing. In addition, it is helpful when a TA/LA is helping you debug.</p>
+<p>注释除了文档字符串之外，指明函数的特定部分是非常重要的。我们希望您对非平凡领域的代码进行注释。这在 6.00 中很有帮助，因为您可以快速浏览代码并记住为什么 / 在做什么。此外，当 TA/LA 帮助您进行调试时，它也很有帮助。</p>
+<p>Here is an example from pset 3, where naming variables of the Robot class is trivial, however, multiplying by 360 is not.</p>
+<p>下面是 pset 3 的一个例子，其中 Robot 类的命名变量很简单，但是乘以 360 就不简单了。</p>
+<pre><small></small><div></div><code class="hljs language-gml"><span class="hljs-variable language_">self</span>.<span class="hljs-variable language_">room</span> = <span class="hljs-variable language_">room</span>
+<span class="hljs-variable language_">self</span>.<span class="hljs-variable language_">speed</span> = <span class="hljs-variable language_">speed</span>
+<span class="hljs-variable language_">self</span>.capacity = capacity
+<span class="hljs-variable language_">self</span>.position = <span class="hljs-variable language_">room</span>.get_random_position()
+<span class="hljs-variable language_">self</span>.<span class="hljs-variable language_">direction</span> = <span class="hljs-built_in">random</span>.<span class="hljs-built_in">random</span>()*<span class="hljs-number">360</span> # <span class="hljs-number">360</span> degrees in a circle
+</code></pre>
+<p>Beyond 6.00 it is useful when other people will inevitably read/utilize your code to know what is happening.</p>
+<p>当其他人不可避免地阅读 / 使用你的代码来了解发生了什么时，超过 6.00 是很有用的。</p>
+<p><a name="catsoop_section_5"></a></p>
+<p><a class="anchor" name="catsoop_section_5"></a><a class="anchor" name="_changing_collections_while_iterating_over_them"></a></p>
+<h2><sup class="fake-head" id="id-5)%20Changing%20Collections%20while%20Iterating%20over%20them"></sup><a class="header-link" href="#id-5)%20Changing%20Collections%20while%20Iterating%20over%20them"><p>5) Changing Collections while Iterating over them</p></a></h2>
+<h2><sup class="fake-head" id="id-5)%E5%9C%A8%E8%BF%AD%E4%BB%A3%E6%97%B6%E6%9B%B4%E6%94%B9%E9%9B%86%E5%90%88"></sup><a class="header-link" href="#id-5)%E5%9C%A8%E8%BF%AD%E4%BB%A3%E6%97%B6%E6%9B%B4%E6%94%B9%E9%9B%86%E5%90%88"><p>5) 在迭代时更改集合</p></a></h2>
+<p>We’ve mentioned that it’s poor practice to modify a collection while iterating over it. This is because the behavior resulting from modification during iteration is ambiguous. The for statement maintains an internal index, which is incremented for each loop iteration. If you modify the list you’re looping over, the indices will get out of sync, and you may end up skipping over items or processing the same item multiple times.</p>
+<p>我们已经提到过，在迭代集合时修改集合是一种糟糕的做法。这是因为在迭代过程中由修改导致的行为是不明确的。For 语句维护一个内部索引，该索引随每次循环迭代递增。如果你修改你正在循环的列表，索引将失去同步，你可能最终跳过项目或多次处理同一项目。</p>
+<p>Let’s look at a couple of examples:</p>
+<p>让我们来看几个例子:</p>
+<pre><small></small><div></div><code class="hljs language-routeros">elems = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+<span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> elems:
+    <span class="hljs-built_in">print</span>(e)
+    elems.<span class="hljs-built_in">remove</span>(e)
+</code></pre>
+<p>This prints:</p>
+<p>这张照片显示:</p>
+<pre><small></small><div></div><code class="hljs language-css"><span class="hljs-selector-tag">a</span>
+c
+</code></pre>
+<p>Meanwhile, if we look at what elems now contains, we see the following:</p>
+<p>与此同时，如果我们看看现在的 elems 包含的内容，我们会看到以下内容:</p>
+<pre><small></small><div></div><code class="hljs language-css">&gt;&gt;&gt; elems
+<span class="hljs-selector-attr">[<span class="hljs-string">'b'</span>]</span>
+</code></pre>
+<p>Why does this happen? Let's look at this code rewritten using a while loop.</p>
+<p>为什么会发生这种情况？让我们来看一下使用 while 循环重写的代码。</p>
+<pre><small></small><div></div><code class="hljs language-stylus">elems = <span class="hljs-selector-attr">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]</span>
+<span class="hljs-selector-tag">i</span> = <span class="hljs-number">0</span>
+while <span class="hljs-selector-tag">i</span> &lt; <span class="hljs-built_in">len</span>(elems):
+    e = elems<span class="hljs-selector-attr">[i]</span>
+    <span class="hljs-built_in">print</span>(e)
+    elems<span class="hljs-selector-class">.remove</span>(e)
+    <span class="hljs-selector-tag">i</span> += <span class="hljs-number">1</span>
+</code></pre>
+<p>This code has the same result. Now it’s clear what’s happening: when you remove the <code>'a'</code> from elems, the remaining elements slide down the list. The list is now <code>['b', 'c']</code>. Now <code>'b'</code> is at index 0, and <code>'c'</code> is at index 1. Since the next iteration is going to look at index 1 (which is the <code>'c'</code> element), the <code>'b'</code> gets skipped entirely! This is not what the programmer intended at all!</p>
+<p>此代码具有相同的结果。现在已经很清楚发生了什么：当你从 elems 中删除‘ a’时，剩下的元素会顺着列表滑动。现在的名单是 [‘ b’，‘ c’]。现在‘ b’在索引 0 处，‘ c’在索引 1 处。由于下一次迭代将查看索引 1 (即‘ c’元素) ，因此‘ b’完全被跳过了！这根本不是程序员的本意！</p>
+<p>Let’s take a look at another example. Instead of removing from the list, we are now adding elements to it. What happens in the following piece of code?</p>
+<p>让我们来看另一个例子。我们现在不是从列表中删除，而是向列表中添加元素。在下面的代码中会发生什么？</p>
+<pre><small></small><div></div><code class="hljs language-css">for e in elems:
+    <span class="hljs-built_in">print</span>(e)
+    elems.<span class="hljs-built_in">append</span>(e)
+</code></pre>
+<p>We might expect the list elems to be <code>['a', 'b', 'c', 'a', 'b', 'c']</code> at the end of execution. However, instead, we get an infinite loop as we keep adding new items to the <code>elems</code> list while iterating. Oops!</p>
+<p>我们可能希望列表 elems 在执行结束时是 [‘ a’、‘ b’、‘ c’、‘ a’、‘ b’、‘ c’]。但是，当我们在迭代时不断向 elems 列表添加新项时，我们会得到一个无限循环。哎呀！</p>
+<p>To work around this kind of issue, you can loop over a copy of the list. For instance, in the following code snippets, we wish to retain all the elements of the list the meet some condition.</p>
+<p>要解决这类问题，可以循环遍历列表的一个副本。例如，在下面的代码片段中，我们希望保留列表中的所有元素以满足某些条件。</p>
+<pre><small></small><div></div><code class="hljs language-xquery">elems_copy = elems[:]
+<span class="hljs-keyword">for</span> <span class="hljs-type">item</span> <span class="hljs-keyword">in</span> elems_copy:
+    <span class="hljs-keyword">if</span><span class="hljs-built_in"> not</span> condition:
+        elems<span class="hljs-built_in">.remove</span>(<span class="hljs-type">item</span>)
+</code></pre>
+<p><code>elems</code> will contain the desired items.</p>
+<p>Elems 将包含所需的项目。</p>
+<p>Alternatively, you can create a new list, and append to it:</p>
+<p>或者，你可以创建一个新的列表，并附加到它:</p>
+<pre><small></small><div></div><code class="hljs language-nestedtext"><span class="hljs-attribute">elems_copy = []
+for item in elems</span><span class="hljs-punctuation">:</span>
+    <span class="hljs-attribute">if condition</span><span class="hljs-punctuation">:</span>
+        elems_copy.append(object)
+</code></pre>
+<p><code>elems_copy</code> will now contain the desired items.</p>
+<p>副本现在包含所需的项目。</p>
+<p>Note that the same rule applies to the set and dict types; however, mutating a set or dictionary while iterating over it will actually raise a RuntimeError -- in this way, Python explicitly prevents this.</p>
+<p>请注意，同样的规则也适用于 set 和 dict 类型；但是，在迭代集或字典时对其进行变异实际上会引发 RuntimeError —— 通过这种方式，Python 显式地防止了这种情况。</p>
+<p><a name="catsoop_section_6"></a></p>
+<p><a class="anchor" name="catsoop_section_6"></a><a class="anchor" name="_directly_accessing_instance_variables"></a></p>
+<h2><sup class="fake-head" id="id-6)%20Directly%20Accessing%20Instance%20Variables"></sup><a class="header-link" href="#id-6)%20Directly%20Accessing%20Instance%20Variables"><p>6) Directly Accessing Instance Variables</p></a></h2>
+<h2><sup class="fake-head" id="id-6)%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F"></sup><a class="header-link" href="#id-6)%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F"><p>6) 直接访问实例变量</p></a></h2>
+<p>This can be a problem because it breaks the interface your class provides to the Abstract Data Type. Here is an example of this, as a line of code you might write for something like decode_story in pset 4:</p>
+<p>这可能是一个问题，因为它破坏了类提供给抽象数据类型的接口。下面是一个例子，你可以写一行代码，比如在 pset 4 中 decode story:</p>
+<pre><small></small><div></div><code class="hljs language-ini"><span class="hljs-attr">shifts</span> = message.shifts <span class="hljs-comment"># evil</span>
+</code></pre>
+<p>This is bad because it means that the instance variable for the text in <code>PlaintextMessage</code> had to be stored as <code>self.shifts</code> for this to work. However, the programmer writing <code>PlaintextMessage</code> (yes, that’s you, too) might not have stored it as <code>self.shifts</code>, because maybe he/she/you preferred <code>self.s</code>, or <code>self.my_message_shifts</code>, or maybe the 1st element of the list <code>self.message_attributes</code>, or anything else. In fact, the only promise made about <code>PlaintextMessage</code> is that there is a constructor that takes in some elements of a Message (e.g. text, shifts), and there is a getter method for some of these properties.</p>
+<p>这很糟糕，因为这意味着 PlaintextMessage 中文本的实例变量文件必须以自身的形式存储。然而，编写 PlaintextMessage 的程序员 (是的，也是你) 可能没有将它存储为 self.shifts，因为他 / 她 / 你更喜欢 self.s，或者 self.my _ message _ shifts，或者列表 self.message _ attributes 的第一个元素，或者其他任何东西。事实上，PlaintextMessage 的唯一承诺就是有一个构造函数可以接受 Message 的一些元素 (比如文本、移位) ，并且有一个 getter 方法可以处理其中的一些属性。</p>
+<p>So, the safer way to do this? Use getter methods!</p>
+<p>所以，更安全的方法是？使用 getter 方法！</p>
+<pre><small></small><div></div><code class="hljs language-ini"><span class="hljs-attr">shifts</span> = message.get_shifts() <span class="hljs-comment"># much better!</span>
+</code></pre>
+<p><a name="catsoop_section_7"></a></p>
+<p><a class="anchor" name="catsoop_section_7"></a><a class="anchor" name="_calling_a_superclass_constructor_from_a_subclass"></a></p>
+<h2><sup class="fake-head" id="id-7)%20Calling%20a%20Superclass%20Constructor%20from%20a%20Subclass"></sup><a class="header-link" href="#id-7)%20Calling%20a%20Superclass%20Constructor%20from%20a%20Subclass"><p>7) Calling a Superclass Constructor from a Subclass</p></a></h2>
+<h2><sup class="fake-head" id="id-7)%E4%BB%8E%E5%AD%90%E7%B1%BB%E8%B0%83%E7%94%A8%E8%B6%85%E7%B1%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"></sup><a class="header-link" href="#id-7)%E4%BB%8E%E5%AD%90%E7%B1%BB%E8%B0%83%E7%94%A8%E8%B6%85%E7%B1%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><p>7) 从子类调用超类构造函数</p></a></h2>
+<p>For a subclass that extends the functionality of a superclass (e.g. Message and PlaintextMessage in pset 4), always reuse the functionality of the superclass instead of rewriting it. This goes back to the concept that we should avoid repeated code.</p>
+<p>对于扩展超类功能的子类 (例如 pset 4 中的 Message 和 PlaintextMessage) ，始终重用超类的功能，而不是重写它。这又回到了我们应该避免重复代码的概念上。</p>
+<p>Say we have the following constructor for the Message class:</p>
+<p>假设我们有如下 Message 类的构造函数:</p>
+<pre><small></small><div></div><code class="hljs language-ruby"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span>():
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"><span class="hljs-variable language_">self</span>, text</span>):
+        <span class="hljs-variable language_">self</span>.message_text = text
+        <span class="hljs-variable language_">self</span>.valid_words = load_words(<span class="hljs-variable constant_">WORDLIST_FILENAME</span>)
+…
+</code></pre>
+<p>When we define the PlaintextMessage class, we could just repeat the two lines of code contained in the constructor as in the below code snippet:</p>
+<p>当我们定义 PlaintextMessage 类时，我们只需要重复构造函数中包含的两行代码，如下面的代码片段所示:</p>
+<pre><small></small><div></div><code class="hljs language-oxygene"># <span class="hljs-keyword">Method</span> 1
+<span class="hljs-title function_">class</span> <span class="hljs-title function_">PlaintextMessage</span><span class="hljs-params">(Message)</span>:
+    def __init__(<span class="hljs-keyword">self</span>, text, shifts):
+        <span class="hljs-keyword">self</span>.message_text = text
+        <span class="hljs-keyword">self</span>.valid_words = load_words(WORDLIST_FILENAME)
+        <span class="hljs-keyword">self</span>.shifts = shifts
+        <span class="hljs-keyword">self</span>.encryption_dict = <span class="hljs-comment">{}</span>
+…
+</code></pre>
+<p>Alternatively, we could make use of inheritance and call the superclass constructor on the first two parameters since this would have the same effect.</p>
+<p>或者，我们可以使用继承，并对前两个参数调用超类构造函数，因为这将具有相同的效果。</p>
+<pre><small></small><div></div><code class="hljs language-oxygene"># <span class="hljs-keyword">Method</span> 2
+<span class="hljs-title function_">class</span> <span class="hljs-title function_">Plaintext</span><span class="hljs-params">(Message)</span>:
+    def __init__(<span class="hljs-keyword">self</span>, text, shifts):
+        # Always call the superclass <span class="hljs-keyword">constructor</span> <span class="hljs-title function_">as</span> <span class="hljs-title function_">the</span> <span class="hljs-title function_">first</span> <span class="hljs-title function_">line</span> <span class="hljs-title function_">of</span>
+        # <span class="hljs-title function_">the</span> <span class="hljs-title function_">subclass</span> <span class="hljs-title function_">constructor</span>.
+        <span class="hljs-title function_">Message</span>.__<span class="hljs-title function_">init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, text)</span> # <span class="hljs-title function_">or</span> <span class="hljs-title function_">super</span><span class="hljs-params">()</span>.__<span class="hljs-title function_">init__</span><span class="hljs-params">(text)</span>
+        <span class="hljs-title function_">self</span>.<span class="hljs-title function_">shifts</span> = <span class="hljs-title function_">shifts</span>
+…
+</code></pre>
+<p>Method 2 is superior to Method 1 in that we prevent ourselves from repeating the code that initializes the variables <code>self.message_text</code> and <code>self.valid_words</code>. Why is this so important?</p>
+<p>方法 2 优于方法 1，因为我们防止自己重复初始化变量 self.message _ text 和 self.valid _ words 的代码。为什么这个问题如此重要？</p>
+<p>Say for some reason, while implementing Method 1, we decided to call the list of valid words in the PlaintextMessage class <code>self.list_of_valid_words</code> instead of <code>self.valid_words</code>. In Python, the superclass constructor is not automatically called when constructing a subclass instance. Now, in all of the superclass methods that reference <code>self.valid_words</code>, we will get an error because it only exists as <code>self.list_of_valid_words</code>.</p>
+<p>出于某种原因，在实现方法 1 时，我们决定调用 PlaintextMessage 类 self.list 中的有效单词列表，而不是 self.valid 单词列表。在 Python 中，在构造子类实例时不会自动调用超类构造函数。现在，在所有引用 self.valid _ words 的超类方法中，我们将得到一个错误，因为它只作为 self.list of _ valid _ words 存在。</p>
+<p>Another reason to use Method 2 is that the superclass constructor may do some other, more complicated initialization and we want to ensure that it is executed.</p>
+<p>使用方法 2 的另一个原因是超类构造函数可能会执行其他一些更复杂的初始化，我们希望确保它被执行。</p>
+<p><a name="catsoop_section_8"></a></p>
+<p><a class="anchor" name="catsoop_section_8"></a><a class="anchor" name="_calling_class_methods"></a></p>
+<h2><sup class="fake-head" id="id-8)%20Calling%20Class%20Methods"></sup><a class="header-link" href="#id-8)%20Calling%20Class%20Methods"><p>8) Calling Class Methods</p></a></h2>
+<h2><sup class="fake-head" id="id-8)%E8%B0%83%E7%94%A8%E7%B1%BB%E6%96%B9%E6%B3%95"></sup><a class="header-link" href="#id-8)%E8%B0%83%E7%94%A8%E7%B1%BB%E6%96%B9%E6%B3%95"><p>8) 调用类方法</p></a></h2>
+<p>When you call class methods on objects, <code>obj.method_name(args)</code> is preferable over <code>class_name.method_name(obj, args)</code>.</p>
+<p>在对象上调用类方法时，obj.method _ name (args) 优于 class _ name.method _ name (obj，args)。</p>
+<p><code>obj.method_name(args)</code> is preferred because we do not make any assumptions about which class <code>method_name</code> belongs to. The Python interpreter will look for a method called <code>method_name</code> from within <code>obj</code>’s class first. Only if it doesn’t find an implementation of <code>method_name</code> in that class will it look in parent classes.</p>
+<p>Obj.method _ name (args) 是首选的，因为我们不对 method _ name 属于哪个类做任何假设。Python 解释器将首先从 obj 的类中寻找一个名为 method _ name 的方法。只有当它在类中找不到 method _ name 的实现时，它才会在父类中查找。</p>
+<p><a name="catsoop_section_9"></a></p>
+<p><a class="anchor" name="catsoop_section_9"></a><a class="anchor" name="_pitfalls_of_storing_custom_objects_in_data_structures"></a></p>
+<h2><sup class="fake-head" id="id-9)%20Pitfalls%20of%20Storing%20custom%20Objects%20in%20Data%20Structures"></sup><a class="header-link" href="#id-9)%20Pitfalls%20of%20Storing%20custom%20Objects%20in%20Data%20Structures"><p>9) Pitfalls of Storing custom Objects in Data Structures</p></a></h2>
+<h2><sup class="fake-head" id="id-9)%E5%9C%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E5%AD%98%E5%82%A8%E5%AE%9A%E5%88%B6%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%BA%E9%99%B7"></sup><a class="header-link" href="#id-9)%E5%9C%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%AD%E5%AD%98%E5%82%A8%E5%AE%9A%E5%88%B6%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%BA%E9%99%B7"><p>9) 在数据结构中存储定制对象的缺陷</p></a></h2>
+<p>Some people tried to store Position objects in their data structure of clean tiles, writing code such as the following:</p>
+<p>有些人试图将 Position 对象存储在他们的数据结构中的清洁瓷砖中，编写如下代码:</p>
+<pre><small></small><div></div><code class="hljs language-reasonml">def is<span class="hljs-constructor">TileCleaned(<span class="hljs-params">self</span>, <span class="hljs-params">m</span>, <span class="hljs-params">n</span>)</span>:
+    newPosition = <span class="hljs-constructor">Position(<span class="hljs-params">m</span>, <span class="hljs-params">n</span>)</span>
+    return newPosition <span class="hljs-keyword">in</span> self.cleanTileList
+</code></pre>
+<p>This code will always return False, even if the tile at (m, n) is clean. The reason why this is problematic gets into the internals of how objects are compared for equality in Python.</p>
+<p>这个代码将总是返回 False，即使 (m，n) 处的瓷砖是干净的。这个问题的原因在于 Python 中如何对对象进行相等的比较。</p>
+<p>How does Python compare objects for equality? Well, for primitives like integers, it's pretty simple -- just see if the two numbers have the same value. Similarly, for strings, check if the characters at each position in the string are the same.</p>
+<p>Python 如何比较对象是否相等？对于像整数这样的原始数据，这非常简单 —— 只要看看这两个数字是否有相同的值就可以了。类似地，对于字符串，检查字符串中每个位置的字符是否相同。</p>
+<p>Whenever we create a new class from scratch in Python, what is the default way to check for equality?</p>
+<p>每当我们用 Python 从头创建一个新类时，检查相等性的默认方式是什么？</p>
+<p>The answer is that for objects, the default way Python checks if they are equal is to check the location where that object is stored in memory. Because this code creates a new Position object, <code>newPosition</code>, it makes sense that this particular instance being created is not stored in the same location as any other Position object in the list of clean tiles! Therefore, of course it won't be found when Python checks to see if it's in the list.</p>
+<p>答案是，对于对象，Python 检查它们是否相等的默认方法是检查对象存储在内存中的位置。因为这段代码创建了一个新的 Position 对象 newPosition，所以创建的这个特定实例并没有存储在清洁瓷砖列表中的任何其他 Position 对象的同一位置是有意义的！因此，当 Python 检查它是否在列表中时，当然不会找到它。</p>
+<p>There are a couple of ways to avoid this issue. Our recommended way for the purposes of this course involves changing what is being stored in the data structure. Representing a set of x, y coordinates as a tuple would make testing for equality much simpler.</p>
+<p>有几种方法可以避免这个问题。本课程所推荐的方法包括更改数据结构中存储的内容。将一组 x，y 坐标表示为一个元组，可以使相等性测试变得更加简单。</p>
+<p>There are other, better ways to solve this problem that are more complicated. If you’d like to get more information, please come to office hours and ask a TA or LA. :)</p>
+<p>还有其他更好的方法来解决这个更复杂的问题。如果您想了解更多信息，请到办公时间咨询助教或洛杉矶。:)</p>
+<p><a class="anchor" name="catsoop_section_10"></a><a class="anchor" name="_which_data_structure_should_i_use"></a></p>
+<h2><sup class="fake-head" id="id-10)%20Which%20Data%20Structure%20should%20I%20use%3F"></sup><a class="header-link" href="#id-10)%20Which%20Data%20Structure%20should%20I%20use%3F"><p>10) Which Data Structure should I use?</p></a></h2>
+<h2><sup class="fake-head" id="id-10)%E6%88%91%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%93%AA%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9F"></sup><a class="header-link" href="#id-10)%E6%88%91%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%93%AA%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9F"><p>10) 我应该使用哪种数据结构？</p></a></h2>
+<p><a name="catsoop_section_10"></a></p>
+<p>In 6.0002 problem set 3, we ask you to store the state of cleanliness for w * h tiles in a rectangular room. We saw different solutions to this, and we want to discuss the pros and cons of different approaches.</p>
+<p>在 6.0002 习题集 3 中，我们要求您将 w * h 瓷砖的清洁状态存储在一个矩形房间中。我们看到了不同的解决方案，我们想要讨论不同方法的利弊。</p>
+<p><strong>List</strong><br>
+Most people chose to store a list of tuples <code>(x, y)</code> for every clean tile. While this works, there are a few things that make this implementation difficult to work with.</p>
+<p>List 大多数人选择为每个干净的瓷砖存储一个元组列表 (x，y)。虽然这种方法可行，但是有一些因素使得这种实现很难使用。</p>
+<p>The first is that whenever a tile is “cleaned”, we must iterate through the entire list (an O(len(cleanTileList)) operation) to see if the tile is not yet considered “clean” before adding the tile’s coordinates to the clean tile list. The necessity of this check can lead to bugs and reduces efficiency.</p>
+<p>首先，每当一个瓷砖被 “清理” 时，我们必须遍历整个列表 (一个 o (len (cleantlelist)) 操作) ，以查看瓷砖是否还没有被认为是 “清理” 的，然后再将瓷砖的坐标添加到清理瓷砖列表中。这种检查的必要性可能会导致错误并降低效率。</p>
+<p>Another issue with this representation is that by including only those tiles that are clean in the list, we are storing a boolean value for each tile implicitly (i.e., if tile is present, it is clean). Here, since what we are doing is storing both the tile’s coordinates and something about the tile, expressing it explicitly would be clearer (see dictionary-based solution). For instance, what if we changed the possible states of the room to be one of <code>“clean”</code>, <code>“dirty”</code>, and <code>“just a little messy”</code>? This representation would not be flexible enough to accommodate that.</p>
+<p>这种表示方式的另一个问题是，通过仅在列表中包含干净的磁贴，我们隐式地为每个磁贴存储了一个布尔值 (即，如果存在磁贴，则为干净的)。在这里，由于我们所做的是同时存储磁贴的坐标和关于磁贴的一些内容，因此显式地表达它会更加清晰 (参见基于字典的解决方案)。例如，如果我们将房间的可能状态改为 “干净”、“脏” 和 “稍微有点凌乱”，会怎样？这种代表权的灵活性不足以适应这种情况。</p>
+<p><strong>Set</strong><br>
+Another solution involved storing coordinates as a set of tuples in the set if the tile was clean, e.g., <code>set((x, y),...)</code></p>
+<p>设置另一个解决方案涉及将坐标作为一组元组存储在集合中，如果平铺是干净的，例如 Set ((x，y) ，…)</p>
+<p>This solution is superior to the solution using lists, since adding a tuple to the set that already exists will never yield a duplicate, so this is less likely to run into bugs. Additionally, set operations like lookup and removal are O(1), so it is very efficient. However, it has the same problem as the list representation in that we are implicitly storing a boolean, and we should try to make that more explicit.</p>
+<p>这个解决方案优于使用列表的解决方案，因为向已经存在的集合添加元组永远不会产生重复，因此不太可能出现错误。此外，诸如查找和删除之类的集合操作是 o (1) ，因此非常有效。然而，它有着与列表表示相同的问题，因为我们隐式地存储一个布尔值，我们应该尝试让它变得更加明确。</p>
+<p><strong>List of lists</strong><br>
+Some people used a list of lists to implement a sort of matrix, with a boolean representing whether or not the room was clean. The list of lists would be indexed twice, corresponding to the x and y coordinates of the tile, to see if that tile is clean. e.g.,</p>
+<p>列表列表一些人使用列表列表来实现一种矩阵，布尔值表示房间是否干净。列表列表将被索引两次，对应于磁贴的 x 和 y 坐标，以查看磁贴是否整洁。例如:</p>
+<pre><small></small><div></div><code class="hljs language-hy">[[<span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>],
+[<span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>],
+...
+[<span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>]]
+</code></pre>
+<p>This solution avoids the problem of implicit boolean storage, but it is less efficient in that updating an entry requires indexing two lists. It can also be confusing -- knowing which dimension to index first can be tricky.</p>
+<p>此解决方案避免了隐式布尔存储的问题，但是由于更新条目需要索引两个列表，因此效率较低。它也可能会令人困惑 —— 知道首先索引哪个维度可能比较棘手。</p>
+<p><strong>Dictionary</strong><br>
+A more natural way to represent this problem is using a dictionary, where the key is a tuple <code>(x,y)</code> of the tile’s position, and the value is a boolean that is True if the tile is clean.</p>
+<p>Dictionary 表示这个问题的一种更自然的方法是使用 Dictionary，其中键是瓷砖位置的元组 (x，y) ，值是一个布尔值，如果瓷砖是干净的，则为 True。</p>
+<p>This is more flexible in that if we were asked to accommodate the states <code>“clean”</code>, <code>“dirty”</code>, and <code>“just a little messy”</code>, we could switch the value stored in the dictionary to be, say, an integer in the set <code>{0, 1, 2}</code>, or even the strings themselves. Updating the cleanliness status of a tile would be a constant time operation (O(1)), and for every tile, we are storing its coordinates and cleanliness status in the same dictionary entry, which is clearer than the other representations.</p>
+<p>这种方法更加灵活，因为如果要求我们容纳 “clean”、“ dirty” 和 “ just a little messy” 的状态，我们可以将字典中存储的值切换为集合 {0、1、2} 中的整数，甚至字符串本身。更新瓷砖的清洁状态将是一个常量时间操作 (o (1)) ，对于每个瓷砖，我们将其坐标和清洁状态存储在同一个段落中，这比其他表示更清晰。</p>
+<p><strong>Takeaway</strong><br>
+In this course, we are trying to teach you to use the data structure most appropriate for the problem at hand. For future problems, think about how best to store your data before just picking the data structure that you happen to be most familiar with. :)</p>
+<p>摘要在这门课程中，我们将教你如何使用最适合手头问题的数据结构。对于未来的问题，在选择您碰巧最熟悉的数据结构之前，考虑如何最好地存储您的数据。:)</p>
+<p></p></main><p></p>
+<p><a href="https://sicp-s1.mit.edu/spring22">Home</a> / <a href="https://sicp-s1.mit.edu/spring22/styleguide">Style Guide</a> 主页 / 时尚指南 This page was last updated on Thursday January 06, 2022 at 02:49:44 PM (revision <font class="cyxy-trs-target" contenteditable="true">本页最后更新于2022年1月6日星期四下午02:49:44(修订版)</font><code>a64777a</code>).<br>
+&nbsp;By using this website, you consent to having your data logged for course management and/or scientific research <font class="cyxy-trs-target" contenteditable="true">通过使用本网站，您同意将您的数据登录用于课程管理和/或科学研究</font></p>
+<pre class="catsooplogo" style="font-size:50%;">\            
+/    /\__/\  
+\__=(  o_O )=
+(__________) 
+ |_ |_ |_ |_ </pre>
+<p>Powered by <font class="cyxy-trs-target" contenteditable="true">动力来源:</font><a href="https://catsoop.mit.edu">CAT-SOOP</a> v2021.9.0 "Foldex" (LTS). <font class="cyxy-trs-target" contenteditable="true">V2021.9.0“ Foldex”(LTS)</font><br>
+CAT-SOOP is <font class="cyxy-trs-target" contenteditable="true">CAT-SOOP 是</font><a href="https://www.fsf.org/about/what-is-free-software">Free/Libre Software <font class="cyxy-trs-target">免费 / 自由软件</font></a> , available under the terms <font class="cyxy-trs-target" contenteditable="true">，根据条款发售</font><br>
+of the <font class="cyxy-trs-target">的 </font><a href="https://sicp-s1.mit.edu/_util/license">GNU Affero General Public License, version 3</a><a href="https://sicp-s1.mit.edu/_util/license">Affero 通用公共许可证，第 3 版</a>.<br>
+<a href="https://sicp-s1.mit.edu/_util/source.zip">Download Source Code <font class="cyxy-trs-target">下载源代码</font></a><br>
+<a href="https://sicp-s1.mit.edu/_util/jslicense.html">Javascript License Information <font class="cyxy-trs-target">许可证信息</font></a><pangu> </pangu><a id="fatkun-drop-panel-close-btn">×</a> 拖拽到此处 <font class="cyxy-trs-target" contenteditable="true">And drag it here</font>图片将完成下载 Image will be downloaded<span class="image-container"><img data-viewer="" alt="" title="" src="https://caiyunapp.com/imgs/webtrs/left-slide.png"><small class="desc"></small></span><img src="https://caiyunapp.com/imgs/xiaoyilogo.jpg" alt="">彩云小译 刚刚<span class="image-container"><img data-viewer="" alt="" title="" src="https://caiyunapp.com/images/favour.png"><small class="desc"></small></span> 0<span class="image-container"><img data-viewer="" alt="" title="" src="https://caiyunapp.com/imgs/webtrs/right-slide.png"><small class="desc"></small></span> 本网页由彩云小译翻译</p>
