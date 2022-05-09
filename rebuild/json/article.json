@@ -1,5 +1,73 @@
 [
     {
+        "title": "程序设计：如何解题",
+        "id": 6106,
+        "time": 1652137798236,
+        "modifyTime": 1652137798236,
+        "len": 22993,
+        "encrypt": false,
+        "menu": [
+            {
+                "size": "big",
+                "text": "Course Notes: Designing Programs",
+                "url": "#id-Course%20Notes%3A%20Designing%20Programs"
+            },
+            {
+                "size": "big",
+                "text": "课程说明: 设计程序",
+                "url": "#id-%E8%AF%BE%E7%A8%8B%E8%AF%B4%E6%98%8E%3A%20%E8%AE%BE%E8%AE%A1%E7%A8%8B%E5%BA%8F"
+            },
+            {
+                "size": "big",
+                "text": "Table of Contents",
+                "url": "#id-Table%20of%20Contents"
+            },
+            {
+                "size": "big",
+                "text": "目录",
+                "url": "#id-%E7%9B%AE%E5%BD%95"
+            },
+            {
+                "size": "big",
+                "text": "1) Introduction 1)引言§",
+                "url": "#id-1)%20Introduction%20%3Cfont%20class%3D%22cyxy-trs-target%22%3E1)%E5%BC%95%E8%A8%80%3C%2Ffont%3E%5B%C2%A7%5D(%23_introduction)"
+            },
+            {
+                "size": "big",
+                "text": "2) A General Framework for Program Design 2)程序设计的一般框架§",
+                "url": "#id-2)%20A%20General%20Framework%20for%20Program%20Design%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E2)%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%B8%80%E8%88%AC%E6%A1%86%E6%9E%B6%3C%2Ffont%3E%5B%C2%A7%5D(%23_a_general_framework_for_program_design)"
+            },
+            {
+                "size": "big",
+                "text": "2.1) Understand the Problem 2.1)理解问题§",
+                "url": "#id-2.1)%20Understand%20the%20Problem%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E2.1)%E7%90%86%E8%A7%A3%E9%97%AE%E9%A2%98%3C%2Ffont%3E%5B%C2%A7%5D(%23_understand_the_problem)"
+            },
+            {
+                "size": "big",
+                "text": "2.2) Make A Plan 2.2)制定计划§",
+                "url": "#id-2.2)%20Make%20A%20Plan%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E2.2)%E5%88%B6%E5%AE%9A%E8%AE%A1%E5%88%92%3C%2Ffont%3E%5B%C2%A7%5D(%23_make_a_plan)"
+            },
+            {
+                "size": "big",
+                "text": "2.3) Implement the Plan 2.3)实施计划§",
+                "url": "#id-2.3)%20Implement%20the%20Plan%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E2.3)%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92%3C%2Ffont%3E%5B%C2%A7%5D(%23_implement_the_plan)"
+            },
+            {
+                "size": "big",
+                "text": "2.4) Look Back 2.4)回顾过去§",
+                "url": "#id-2.4)%20Look%20Back%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E2.4)%E5%9B%9E%E9%A1%BE%E8%BF%87%E5%8E%BB%3C%2Ffont%3E%5B%C2%A7%5D(%23_look_back)"
+            },
+            {
+                "size": "big",
+                "text": "3) Organizing the Design Process 3)组织设计过程§",
+                "url": "#id-3)%20Organizing%20the%20Design%20Process%20%3Cfont%20class%3D%22cyxy-trs-target%22%20contenteditable%3D%22true%22%3E3)%E7%BB%84%E7%BB%87%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B%3C%2Ffont%3E%5B%C2%A7%5D(%23_organizing_the_design_process)"
+            }
+        ],
+        "tags": [
+            "programming"
+        ]
+    },
+    {
         "title": "6.001python指南",
         "id": 9867,
         "time": 1651407799974,
